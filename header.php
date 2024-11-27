@@ -19,7 +19,7 @@
                     <a class="nav-link" href="index.php?page=mi_cv">Mi CV</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=ofertas">Ver ofertas laborales</a>
+                    <a class="nav-link" href="index.php?page=ver_propuesta">Ver ofertas laborales</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=cerrar_sesion">Cerrar sesion</a>
