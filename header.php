@@ -10,7 +10,7 @@
                     <a class="nav-link" href="index.php?page=propuesta">Propuestas laborales</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=reporte">Reporte</a>
+                    <a class="nav-link" href="index.php?page=reporte_propuesta">Reporte</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=postulaciones">Postulaciones</a>
