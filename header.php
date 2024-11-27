@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=ofertas">Ver ofertas laborales</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=cerrar_sesion">Cerrar sesion</a>
+                </li>
             </ul>
         </div>
     </div>

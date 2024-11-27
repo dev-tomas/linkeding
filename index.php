@@ -9,8 +9,13 @@
 </head>
 <body>
 <?php 
-include("header.php");
-include("conexion.php");
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: sections/login.php");
+    exit();
+}
+include("header.php"); 
+include("sections/conexion.php"); 
 ?>
     <div class="container content mt-4">
         <div class="row">

@@ -5,14 +5,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql_usuario = "SELECT * FROM usuario WHERE nombre_usuario = '$username'";
-    $result_usuario = mysqli_query($cn, $sql_usuario);
+    $sql_usuario = "SELECT * FROM usuario WHERE nombre_usuario = ?";
+    $stmt = mysqli_prepare($cn, $sql_usuario);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result_usuario = mysqli_stmt_get_result($stmt);
 
     if ($result_usuario && mysqli_num_rows($result_usuario) > 0) {
         $r_usuario = mysqli_fetch_assoc($result_usuario);
         
-        if ($password==$r_usuario['contrasena_usuario']) {
-            header("Location: index.php");
+        // Comparación directa de contraseñas
+        if ($password == $r_usuario['contrasena_usuario']) {
+            // Iniciar sesión correctamente
+            session_start();
+            $_SESSION['usuario_id'] = $r_usuario['id_usuario'];
+            $_SESSION['nombre_usuario'] = $r_usuario['nombre_usuario'];
+            
+            header("Location: ../index.php");
             exit();
         } else {
             $error_message = "Contraseña Invalida!";
@@ -30,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MyLinkedIn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 
 </head>
 <body>

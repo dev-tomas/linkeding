@@ -1,2 +1,0 @@
-# linkeding
-Proyecto HDW
