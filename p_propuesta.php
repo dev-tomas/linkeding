@@ -7,7 +7,7 @@ $propuesta = $_POST['propuesta'];
 $descripcion = $_POST['descripcion'];
 $requisitos = $_POST['requisitos'];
 $fechalimite = $_POST['fechalimite'];
-$id_estado_propuesto = $_POST["lstestado"];
+
 
 
 $id_estado_propuesto = 2;
