@@ -1,0 +1,33 @@
+
+body {
+    background-color: #434A64;
+    color: #BCC3CD;
+}
+.card {
+    background-color: #4E5C89;
+    border: none;
+    border-radius: 10px;
+}
+.btn-primary {
+    background-color: #B54752;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #A53F4A;
+}
+.form-control {
+    background-color: #BCC3CD;
+    color: #434A64;
+    border: 1px solid #A53F4A;
+}
+.form-control:focus {
+    border-color: #B54752;
+    box-shadow: none;
+}
+.form-check-label {
+    color: #BCC3CD;
+}
+.error-message {
+    color: #f7eff0;
+    font-size: 0.9rem;
+}
