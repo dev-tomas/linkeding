@@ -8,12 +8,23 @@ include("conexion.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Propuesta</title>
-    <link href="css/estilo.css" rel="stylesheet">
+    <link href="../css/propuesta.css" rel="stylesheet">
 </head>
 <body>
 
 <h2>Registrar Propuesta</h2>
-<form action="p_propuesta.php" method="POST">
+
+<?php
+if (isset($_GET['status'])) {
+    if ($_GET['status'] === 'success') {
+        echo '<p style="color: green;">Propuesta registrada exitosamente.</p>';
+    } elseif ($_GET['status'] === 'error') {
+        echo '<p style="color: red;">Ocurrió un error al registrar la propuesta. Intente nuevamente.</p>';
+    }
+}
+?>
+
+<form action="../control/p_propuesta.php" method="POST">
     <label for="propuesta">Nombre de la Propuesta:</label>
     <input type="text" id="propuesta" name="propuesta" required><br><br>
     

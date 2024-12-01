@@ -1,3 +1,13 @@
+<?php
+// Coloca esta línea al principio para evitar problemas de salida
+ob_start();
+
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: sections/login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +19,6 @@
 </head>
 <body>
 <?php 
-session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: sections/login.php");
-    exit();
-}
 include("header.php"); 
 include("sections/conexion.php"); 
 ?>
@@ -24,7 +29,13 @@ include("sections/conexion.php");
                     <?php
                     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                     $section_file = "sections/" . $page . ".php";
-                    include($section_file);
+                    
+                    // Verifica si el archivo existe antes de incluirlo
+                    if (file_exists($section_file)) {
+                        include($section_file);
+                    } else {
+                        echo "Página no encontrada";
+                    }
                     ?>
                 </div>
             </div>
@@ -34,3 +45,7 @@ include("sections/conexion.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php
+// Finaliza el buffer de salida
+ob_end_flush();
+?>

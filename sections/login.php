@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login - MyLinkedIn</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
-
 </head>
 <body>
     <div class="container vh-100 d-flex justify-content-center align-items-center">
@@ -54,12 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
-                </div>                <div class="mb-3">
+                </div>
+                <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Log In</button>
             </form>
+            <div class="text-center mt-3">
+                <a href="registro.php" class="text-decoration-none">No tienes una cuenta? Registrate</a>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,53 @@
+/* Encapsular el diseño del header en un contenedor específico */
+header {
+    background-color: #f4f4f4;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Limitar el ancho del contenedor y centrarlo */
+header nav {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo de la lista de navegación */
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Estilo de los elementos de la lista */
+header nav ul li {
+    margin: 0 15px;
+}
+
+/* Estilo de los enlaces */
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* Estilo de hover para los enlaces */
+header nav ul li a:hover {
+    color: #0073b1; /* Azul profesional, similar a LinkedIn */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    header nav ul li {
+        margin: 10px 0;
+    }
+}

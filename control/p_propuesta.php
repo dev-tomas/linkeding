@@ -1,26 +1,29 @@
+// p_propuesta.php
 <?php
+include("../sections/conexion.php");
 
-include("conexion.php");
+// Validar que todos los campos estén presentes
+if (!isset($_POST['propuesta'], $_POST['descripcion'], $_POST['requisitos'], $_POST['fechalimite'])) {
+    header("Location: ../sections/propuesta.php?status=error");
+    exit;
+}
 
+$propuesta = mysqli_real_escape_string($cn, $_POST['propuesta']);
+$descripcion = mysqli_real_escape_string($cn, $_POST['descripcion']);
+$requisitos = mysqli_real_escape_string($cn, $_POST['requisitos']);
+$fechalimite = mysqli_real_escape_string($cn, $_POST['fechalimite']);
 
-$propuesta = $_POST['propuesta'];
-$descripcion = $_POST['descripcion'];
-$requisitos = $_POST['requisitos'];
-$fechalimite = $_POST['fechalimite'];
+$id_estado_propuesto = 1;
 
+// Insertar la propuesta
+$sql = "INSERT INTO propuesta (nombre_propuesta, descripcion_propuesta, requisitos_propuesta, fecha_limite, id_estado_propuesta) 
+        VALUES ('$propuesta', '$descripcion', '$requisitos', '$fechalimite', '$id_estado_propuesto')";
 
+if (mysqli_query($cn, $sql)) {
+    header("Location: ../sections/propuesta.php?status=success");
+} else {
+    header("Location: ../sections/propuesta.php?status=error");
+}
 
-$id_estado_propuesto = 2;
-
-
-$sql = "insert into propuesta (nombre_propuesta, descripcion_propuesta, requisitos_propuesta, fecha_limite, id_estado_propuesta) 
-        values ('$propuesta', '$descripcion', '$requisitos', '$fechalimite', '$id_estado_propuesto')";
-
-
-mysqli_query($cn, $sql);
-
-header("Location: reportepropuesta.php");
-
+exit;
 ?>
-
-
