@@ -69,7 +69,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
         </tr>
         
         <tr> 
-            <form action="" > <!-- No sé a quien va dirigido o quien debe saber mi postulación -->
+            <form action="" > <!-- No sé a quien va dirigido o quien debe saber mi postulacion -->
             <td colspan="2" align="center">
                 <input type="submit" value="Postular" style="width: 200px;">
             </td>
