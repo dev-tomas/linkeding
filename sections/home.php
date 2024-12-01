@@ -1,8 +1,18 @@
-<div class="text-center">
-    <h1 class="display-4">¡Bienvenido a MyLinkedIn!</h1>
-    <p class="lead">Esta es tu página de inicio. Desde aquí podrás acceder a todas las funciones de la plataforma.</p>
-    <hr class="my-4">
-    <p>Explora propuestas laborales, actualiza tu CV, visualiza las ofertas laborales y mucho más.</p>
-    <a class="btn btn-primary btn-lg" href="index.php?page=propuestas" role="button">Ver Propuestas Laborales</a>
-    <a class="btn btn-secondary btn-lg" href="index.php?page=mi_cv" role="button">Mi CV</a>
+<?php
+require_once 'control/p_home.php';
+?>
+<div class="home-content">
+    <h1>Bienvenido(a), <?php echo htmlspecialchars($nombre); ?> 😄</h1>
+    <hr>
+    <h3>Perfil</h3>
+    <p><strong>CIP:</strong> <?php echo htmlspecialchars($cip); ?></p>
+    <p><strong>DNI:</strong> <?php echo htmlspecialchars($dni); ?></p>
+    <p><strong>Nombres:</strong> <?php echo htmlspecialchars($nombre); ?></p>
+    <p><strong>Apellidos:</strong> <?php echo htmlspecialchars($apellido_paterno . ' ' . $apellido_materno); ?></p>
+    <p><strong>Estado:</strong> <?php echo htmlspecialchars($nombre_estado_postulante); ?></p>
+    <?php if (strtolower($estado) !== '1'): ?>
+        <div class="alert alert-warning">
+            ⚠️ Su estado no está activo, por favor contacte con soporte.
+        </div>
+    <?php endif; ?>
 </div>

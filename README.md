@@ -13,10 +13,10 @@ Aqui se muestra las partes que tendrán que hacer cada uno
   - Editar propuesta(las que suben en la empresa)
   - Eliminar esas propuestas (Cambiar estado a eliminado, cuando se cambia el estado no se puede ver)
   - Ver los postulantes a esa propuesta (Incluye poder leer el pdf)
-## Villavicencio:
+## 4. Villavicencio:
   - Ver oferta (Solo para postulantes, las ofertas son propuestas pero desde la vista de postulantes)
   - Que funcione el boton postular.
   - Que pueda postular a esa oferta.
-## Gomez:
+## 5. Gomez:
   - Estadistica(Solo en superusuario)
   - Modificar reporte_propuesta (reporte_propuesta tiene que mostrar solo las propuestas de la empresa)
