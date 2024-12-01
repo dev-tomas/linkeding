@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include("control/conexion.php");
+include("sections/conexion.php");
 $id_rol = $_SESSION['id_rol'] ?? 0;
 
 
