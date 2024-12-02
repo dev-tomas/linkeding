@@ -11,7 +11,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
             p.descripcion_propuesta, 
             p.requisitos_propuesta, 
             p.fecha_limite, 
-            e.razon_social_empresa AS nombre_empresa
+            e.razon_social_empresa as nombre_empresa
         from 
             detalle_empresa_propuesta dep
         inner join
@@ -19,7 +19,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
         inner join 
             propuesta p ON dep.id_propuesta = p.id_propuesta
         where 
-            e.razon_social_empresa = ? AND p.nombre_propuesta = ?";
+            e.razon_social_empresa = ? and p.nombre_propuesta = ?";
 
     // Preparar consulta segura
     if ($stmt = $cn->prepare($sql)) {
@@ -54,6 +54,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
     <center><h2><?php echo ($empresa); ?></h2></center>
     <center><h4>PROPUESTA: <?php echo ($propuesta); ?></h4></center>
 
+    <!-- No sé a quien va dirigido o quien debe saber mi postulacion -->
     <table border="1">
         <tr>
             <td>Descripción</td>
@@ -67,15 +68,22 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
             <td>Fecha Límite</td>
             <td><?php echo ($fecha_limite); ?></td>
         </tr>
-        
-        <tr> 
-            <form action="" > <!-- No sé a quien va dirigido o quien debe saber mi postulacion -->
+        <tr>
             <td colspan="2" align="center">
-                <input type="submit" value="Postular" style="width: 200px;">
+
+        <a
+        style="padding: 8px 8px; background-color: #434A64; color: white; border: none; cursor: pointer;" 
+        onclick="window.location.href='index.php?page=mis_postulaciones'">
+        Postular
+        </a>
             </td>
-            </form>
+
         </tr>
+        
+            
+               
     </table>
+   
 
     
 </body>

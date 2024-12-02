@@ -32,10 +32,10 @@ $fila = mysqli_query($cn, $sql);
 
     <table border="1">
         <tr>
-            <td><strong>EMPRESA</strong></td>
-            <td><strong>FOTO</strong></td>
-            <td><strong>PROPUESTA</strong></td>
-            <td><strong>VER PROPUESTA</strong></td>
+            <td bgcolor="white"><strong>EMPRESA</strong></td>
+            <td bgcolor="white"><strong>FOTO</strong></td>
+            <td bgcolor="white"><strong>PROPUESTA</strong></td>
+            <td bgcolor="white"><strong>VER PROPUESTA</strong></td>
         </tr>
 
         <?php 
