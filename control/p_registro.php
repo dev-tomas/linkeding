@@ -48,20 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Insertar detalles adicionales basados en el rol
             if ($rol == 2) { // Empresa
-                $razon_social = $_POST['razon_social'];
+                $razon_social = $_POST['razon_social']; 
                 $ruc = $_POST['ruc'];
-                $celular = $_POST['celular_empresa'];
-                $direccion = $_POST['direccion_empresa'];
-                $representante = $_POST['representante_empresa'];
-
-                $sql_insert_empresa = "INSERT INTO empresa (ruc_empresa, razon_social_empresa, celular_empresa, direccion_empresa, representante_empresa, id_estado_empresa, id_usuario) VALUES (?, ?, ?, ?, ?, 1, ?)";
+                $celular = $_POST['celular'];
+                $direccion = $_POST['direccion'];
+            
+                // Concatenar los nombres del representante
+                $representante_apellido_paterno = $_POST['representante_apellido_paterno'];
+                $representante_apellido_materno = $_POST['representante_apellido_materno'];
+                $representante_nombres = $_POST['representante_nombres'];
+                $representante = $representante_apellido_paterno . ' ' . $representante_apellido_materno . ' ' . $representante_nombres;
+            
+                $sql_insert_empresa = "INSERT INTO empresa (ruc_empresa, razon_social_empresa, celular_empresa, direccion_empresa, representante_empresa, id_estado_empresa, id_usuario) 
+                                       VALUES (?, ?, ?, ?, ?, 1, ?)";
                 $stmt_insert_empresa = mysqli_prepare($cn, $sql_insert_empresa);
                 mysqli_stmt_bind_param($stmt_insert_empresa, "sssssi", $ruc, $razon_social, $celular, $direccion, $representante, $user_id);
-                
+            
                 if (!mysqli_stmt_execute($stmt_insert_empresa)) {
                     echo "Error al registrar los detalles de la empresa: " . mysqli_error($cn);
                     exit();
-                }
+                }            
             
             } elseif ($rol == 3) { // Postulante
                 $nombre = $_POST['nombre'];
