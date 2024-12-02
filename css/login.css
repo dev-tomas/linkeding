@@ -1,32 +1,132 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #434A64;
-    color: #BCC3CD;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #4a90e2, #50c1e9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    padding: 20px; /* Para que el contenido no se pegue al borde en pantallas pequeñas */
 }
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Card */
 .card {
-    background-color: #4E5C89;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px; /* Tamaño más grande */
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    margin: 20px; /* Espacio alrededor del formulario */
+}
+
+/* Form styles */
+h3 {
+    margin-bottom: 2rem; /* Más espacio debajo del título */
+    font-size: 1.8rem; /* Tamaño de texto más grande */
+    color: #333;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    font-size: 1rem; /* Tamaño de texto más grande */
+    color: #555;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 12px; /* Más espacio dentro del campo */
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Button */
+button {
+    background-color: #4a90e2;
+    color: #fff;
     border: none;
-    border-radius: 10px;
+    padding: 14px; /* Más alto */
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1.1rem; /* Botón más grande */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem; /* Separación del último campo */
 }
-.btn-primary {
-    background-color: #B54752;
-    border: none;
+
+button:hover {
+    background-color: #3a7bd5;
+    box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
 }
-.btn-primary:hover {
-    background-color: #A53F4A;
-}
-.form-control {
-    background-color: #BCC3CD;
-    color: #434A64;
-    border: 1px solid #A53F4A;
-}
-.form-control:focus {
-    border-color: #B54752;
-    box-shadow: none;
-}
-.form-check-label {
-    color: #BCC3CD;
-}
+
+/* Error message */
 .error-message {
-    color: #f7eff0;
-    font-size: 0.9rem;
+    color: #e74c3c;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Links */
+.link {
+    margin-top: 1.5rem;
+}
+
+.link a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: #3a7bd5;
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
