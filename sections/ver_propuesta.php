@@ -2,7 +2,7 @@
 include("conexion.php"); // Incluimos el archivo de conexión
 
 // ID de la propuesta que quieres consultar
-$cod = 1;//isset($_GET['id_propuesta']) ? $_GET['id_propuesta'] : ''; // Obtén el ID de la propuesta desde el parámetro GET
+$cod = $_SESSION['id_usuario']; // Obtén el ID de la propuesta desde el parámetro GET
 
 $r = []; // Inicializamos la variable $r como un array vacío
 
@@ -17,7 +17,7 @@ if (!empty($cod)) {
                    ep.nombre_estado_propuesta
             FROM propuesta p
             INNER JOIN estado_propuesta ep ON p.id_estado_propuesta = ep.id_estado_propuesta
-            WHERE p.id_propuesta = 1";
+            WHERE p.id_propuesta = $cod";
 
     $f = mysqli_query($cn, $sql); // Ejecutamos la consulta
     if ($f && mysqli_num_rows($f) > 0) {
