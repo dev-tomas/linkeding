@@ -1,0 +1,92 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Centering and Styling for the Header */
+h1 {
+    color: #ffffff; /* Color profesional */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.header-column {
+    background-color: #6667a5;
+}
+
+/* Table Styles */
+.offer-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #ffffff00;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #4E5C89; /* Azul para los encabezados */
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4E5C89; /* Cambié el color al que mencionaste */
+    font-weight: bold;
+}
+
+/* Table Cell Styling */
+.offer-table td {
+    /* background-color: #ffffff00; */
+    color: #020202;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Fondo suave para filas impares */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f1; /* Fondo suave para filas pares */
+}
+
+tbody tr:hover {
+    background-color: #e0e0e0; /* Resaltar fila al pasar el ratón */
+}
+
+/* Link Styling for 'Ver Propuesta' */
+.view-link {
+    color: #0a66c2; /* Azul profesional */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-link:hover {
+    text-decoration: underline; /* Agregar subrayado al pasar el ratón */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .offer-table {
+        width: 100%;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+

@@ -1,0 +1,80 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+/* Centering and Styling for the Header */
+h2 {
+    color: #ffffff; /* Color profesional */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+.card {
+    background-color: #4E5C89;
+    border: none;
+    border-radius: 10px;
+    color: #03060b;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #4E5C89; /* Azul para los encabezados */
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #000000;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Fondo suave para filas impares */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f1; /* Fondo suave para filas pares */
+}
+
+tbody tr:hover {
+    background-color: #e0e0e0; /* Resaltar fila al pasar el ratón */
+}
+
+/* Styling for Empty Message */
+td[colspan="2"] {
+    color: #777;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
