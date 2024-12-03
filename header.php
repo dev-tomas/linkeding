@@ -27,8 +27,20 @@ require_once 'control/p_header.php';
                             <li><a href="index.php?page=editar_contrasena_usuario">Cambiar contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?page=reportes_admin">Reportes</a></li>
-                    <li><a href="index.php?page=atencion">Atención</a></li>
+                    <li class="has-sub">
+                        <a href="#">Reportes</a>
+                        <ul>
+                            <li><a href="index.php?page=reportes_admin">Postulantes</a></li>
+                            <li><a href="index.php?page=reportes_empresa_admin">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="#">Atención</a>
+                        <ul>
+                            <li><a href="index.php?page=atencion_postulante">Postulantes</a></li>
+                            <li><a href="index.php?page=atencion_empresa">Empresas</a></li>
+                        </ul>
+                    </li>
                     <li><a href="index.php?page=estadistica">Estadística</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php elseif ($id_rol == 2): ?>
