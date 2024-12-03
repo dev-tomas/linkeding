@@ -7,9 +7,18 @@ include("../sections/conexion.php");
 // Verificar si se envió el formularios
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $id_postulante = $_SESSION['usuario_id'];
+    $id_usuario_logueado = $_SESSION['usuario_id'];
     $id_propuesta = $_POST['id_propuesta'];
     $fecha_postulacion = date('Y-m-d');
+
+
+    $sql_postulante = "SELECT id_postulante FROM postulante WHERE id_usuario = ?";
+    $stmt_postulante = mysqli_prepare($cn, $sql_postulante);
+    mysqli_stmt_bind_param($stmt_postulante, "i", $id_usuario_logueado);
+    mysqli_stmt_execute($stmt_postulante);
+    $resultado_postulante = mysqli_stmt_get_result($stmt_postulante);
+    $postulante = mysqli_fetch_assoc($resultado_postulante);
+    $id_postulante = $postulante['id_postulante'];
 
 
     // Verificar si ya existe una postulación
@@ -26,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
         exit;
     }
-
 
 
     // Si no existe la postulación, se procede a registrar

@@ -5,7 +5,18 @@ include("conexion.php");
 
 // Verificar si el usuario está autenticado y tiene el rol de postulante
 if (isset($_SESSION['usuario_id'])) {
-    $id_postulante = $_SESSION['usuario_id'];  // Obtener el id_postulante de la sesión
+    $id_usuario_logueado = $_SESSION['usuario_id'];  // Obtener el id_postulante de la sesión
+
+    $sql_postulante = "SELECT id_postulante FROM postulante WHERE id_usuario = ?";
+    $stmt_postulante = mysqli_prepare($cn, $sql_postulante);
+    mysqli_stmt_bind_param($stmt_postulante, "i", $id_usuario_logueado);
+    mysqli_stmt_execute($stmt_postulante);
+    $resultado_postulante = mysqli_stmt_get_result($stmt_postulante);
+    $postulante = mysqli_fetch_assoc($resultado_postulante);
+    $id_postulante = $postulante['id_postulante'];
+
+
+
 
     // Consultar la base de datos para obtener las postulaciones de este usuario
     $sql = "SELECT p.nombre_propuesta, dp.fecha_postulacion
