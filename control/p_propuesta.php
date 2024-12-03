@@ -1,4 +1,4 @@
-// p_propuesta.php
+
 <?php
 include("../sections/conexion.php");
 
@@ -20,9 +20,9 @@ $sql = "INSERT INTO propuesta (nombre_propuesta, descripcion_propuesta, requisit
         VALUES ('$propuesta', '$descripcion', '$requisitos', '$fechalimite', '$id_estado_propuesto')";
 
 if (mysqli_query($cn, $sql)) {
-    header("Location: ../sections/propuesta.php?status=success");
+    header("Location: ../index.php?page=propuesta");
 } else {
-    header("Location: ../sections/propuesta.php?status=error");
+    header("Location: ../index.php?page=propuesta");
 }
 
 exit;

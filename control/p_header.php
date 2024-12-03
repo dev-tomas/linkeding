@@ -37,6 +37,8 @@ if ($id_rol == 3) {
 
     mysqli_stmt_execute($stmt);
 
+    $result_usuario = mysqli_stmt_get_result($stmt);
+
     $usuario = mysqli_fetch_assoc($result_usuario);
     $nombre = $usuario['razon_social_empresa'] ?? 'No especificado';
     $representante = $usuario['representante_empresa'] ?? 'No especificado';
@@ -51,6 +53,9 @@ if ($id_rol == 3) {
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['usuario_id']);
 
     mysqli_stmt_execute($stmt);
+
+    $result_usuario = mysqli_stmt_get_result($stmt);
+
     $usuario = mysqli_fetch_assoc($result_usuario);
     $nombre = $usuario['nombre_administrador'] ?? 'No especificado';
     $apellido_paterno = $usuario['apellido_paterno_administrador'] ?? 'No especificado';
@@ -62,7 +67,7 @@ if ($id_rol == 3) {
 }
 
 $nombre_usuario = $_SESSION['nombre_usuario'] ?? 'Usuario';
-$ruta_imagen_usuario = $_SESSION['ruta_imagen_usuario'] ?? '../img/user.svg';
+$ruta_imagen_usuario = $_SESSION['ruta_imagen_usuario'] ?? 'linkeding/img/user.svg';
 
 mysqli_stmt_close($stmt);
 ?>

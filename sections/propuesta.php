@@ -1,5 +1,6 @@
 <?php
 include("conexion.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -14,17 +15,9 @@ include("conexion.php");
 
 <h2>Registrar Propuesta</h2>
 
-<?php
-if (isset($_GET['status'])) {
-    if ($_GET['status'] === 'success') {
-        echo '<p style="color: green;">Propuesta registrada exitosamente.</p>';
-    } elseif ($_GET['status'] === 'error') {
-        echo '<p style="color: red;">Ocurrió un error al registrar la propuesta. Intente nuevamente.</p>';
-    }
-}
-?>
 
-<form action="../control/p_propuesta.php" method="POST">
+
+<form action="http://localhost/linkeding/control/p_propuesta.php" method="POST">
     <label for="propuesta">Nombre de la Propuesta:</label>
     <input type="text" id="propuesta" name="propuesta" required><br><br>
     
