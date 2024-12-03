@@ -1,36 +1,34 @@
 <?php
 include("conexion.php");
 
+$sql = "
+SELECT 
+    e.razon_social_empresa AS nombre_empresa, 
+    p.nombre_propuesta AS propuesta
+FROM 
+    detalle_empresa_propuesta dep
+INNER JOIN 
+    empresa e ON dep.id_empresa = e.id_empresa
+INNER JOIN 
+    propuesta p ON dep.id_propuesta = p.id_propuesta
+GROUP BY 
+    e.id_empresa, p.id_propuesta
+";
 
-
-$sql = "select
-        e.razon_social_empresa AS nombre_empresa, 
-        p.nombre_propuesta AS propuesta
-    from 
-        detalle_empresa_propuesta dep
-    inner join 
-        empresa e ON dep.id_empresa = e.id_empresa
-    inner join 
-        propuesta p ON dep.id_propuesta = p.id_propuesta";
 
 $fila = mysqli_query($cn, $sql);
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Oferta</title>
-    <link rel="stylesheet" href="css/oferta.css">
+    <link rel="stylesheet" href="../css/ofertas_laborales.css">
 </head>
 <body>
-    <center><h1><strong>OFERTAS LABORALES</strong></h1></center>
-
+<br>
     <table border="1" class="offer-table">
         <tr>
             <td class="header-column"><strong>EMPRESA</strong></td>

@@ -1,80 +1,113 @@
-/* General Reset */
-* {
+body {
+    font-family: 'Inter', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #f5f6f8;
+    color: #2c3e50;
+    line-height: 1.6;
 }
 
-
-
-
-/* Centering and Styling for the Header */
-h2 {
-    color: #ffffff; /* Color profesional */
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 26px;
-}
-.card {
-    background-color: #4E5C89;
-    border: none;
-    border-radius: 10px;
-    color: #03060b;
-}
-
-/* Table Styles */
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #fff;
+.offer-table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-thead {
-    background-color: #4E5C89; /* Azul para los encabezados */
+.offer-table th, .offer-table td {
+    border-bottom: 1px solid #e9ecef;
+    padding: 14px 16px;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+.header-column {
+    background-color: #3a4f7a;
     color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-th, td {
-    padding: 12px;
+.offer-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.offer-table tr:hover {
+    background-color: #e6f2ff;
+}
+
+.offer-table a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.offer-table a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* Empty state or no data styling */
+.offer-table .no-data {
     text-align: center;
-    font-size: 16px;
-    border-bottom: 1px solid #000000;
+    color: #7f8c8d;
+    font-style: italic;
+    padding: 20px;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: #f9f9f9; /* Fondo suave para filas impares */
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f1f1f1; /* Fondo suave para filas pares */
-}
-
-tbody tr:hover {
-    background-color: #e0e0e0; /* Resaltar fila al pasar el ratón */
-}
-
-/* Styling for Empty Message */
-td[colspan="2"] {
-    color: #777;
-    font-size: 18px;
-    text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    table {
+@media screen and (max-width: 600px) {
+    .offer-table, 
+    .offer-table tbody, 
+    .offer-table tr, 
+    .offer-table td {
+        display: block;
         width: 100%;
-        padding: 15px;
+        box-sizing: border-box;
     }
+    
+    .offer-table tr {
+        margin-bottom: 10px;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+    }
+    
+    .offer-table td {
+        border-bottom: 1px solid #f1f3f5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .offer-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #2c3e50;
+        margin-right: 10px;
+    }
+}
 
-    th, td {
-        font-size: 14px;
-    }
+/* Scrollbar styling for modern browsers */
+.offer-table {
+    scrollbar-width: thin;
+    scrollbar-color: #3a4f7a #f1f3f5;
+}
 
-    h2 {
-        font-size: 22px;
-    }
+.offer-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.offer-table::-webkit-scrollbar-track {
+    background: #f1f3f5;
+}
+
+.offer-table::-webkit-scrollbar-thumb {
+    background-color: #3a4f7a;
+    border-radius: 4px;
 }

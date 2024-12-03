@@ -12,9 +12,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 include("../sections/conexion.php");
-$id_empresa =$_SESSION['usuario_id'];
+$id_usuario_logueado = $_SESSION['usuario_id'];
 // Validar que todos los campos estén presentes
-
+$sql_empresa = "SELECT id_empresa FROM empresa WHERE id_usuario = ?";
+$stmt_empresa = mysqli_prepare($cn, $sql_empresa);
+mysqli_stmt_bind_param($stmt_empresa, "i", $id_usuario_logueado);
+mysqli_stmt_execute($stmt_empresa);
+$resultado_empresa = mysqli_stmt_get_result($stmt_empresa);
+$empresa = mysqli_fetch_assoc($resultado_empresa);
+    $id_empresa = $empresa['id_empresa'];
 // Validar que el usuario tenga una sesión activa con id_usuario
 
 $propuesta = mysqli_real_escape_string($cn, $_POST['propuesta']);
@@ -49,12 +55,18 @@ try {
 
     // Confirmar la transacción
     mysqli_commit($cn);
-    header("Location: ../sections/propuesta.php?status=success");
+    echo "<script>
+                alert('Registro Exitoso');
+                window.location.href = '../index.php?page=reporte_propuesta';
+                </script>";
 } catch (Exception $e) {
     // Revertir la transacción en caso de error
     mysqli_rollback($cn);
     error_log($e->getMessage());
-    header("Location: ../sections/propuesta.php?status=error");
+    echo "<script>
+                alert('Ha fallado algo');
+                window.location.href = '../index.php?page=reporte_propuesta';
+                </script>";
 }
 
 exit;

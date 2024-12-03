@@ -35,16 +35,17 @@ if (isset($_SESSION['usuario_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Postulaciones</title>
-    <link rel="stylesheet" href="css/postulaciones.css">
+    <link rel="stylesheet" href="../css/postulaciones.css">
 </head>
 <body>
-    <h2><strong><center>MIS POSTULACIONES</center></strong></h2>
+    <br>
+    <center><h2>MIS POSTULACIONES</h2></center>
 
-    <table border="1" cellspacing="0" cellpadding="5" style="margin: 0 auto;">
+    <table class="offer-table">
         <thead>
             <tr>
-                <th>Nombre de la Propuesta</th>
-                <th>Fecha de Postulación</th>
+                <th class="header-column">Nombre de la Propuesta</th>
+                <th class="header-column">Fecha de Postulación</th>
             </tr>
         </thead>
         <tbody>
@@ -53,17 +54,15 @@ if (isset($_SESSION['usuario_id'])) {
             if ($resultado->num_rows > 0) {
                 while ($r = $resultado->fetch_assoc()) {
                     echo "<tr>
-                            <td>" . htmlspecialchars($r['nombre_propuesta']) . "</td>
-                            <td>" . htmlspecialchars($r['fecha_postulacion']) . "</td>
+                            <td data-label='Nombre de la Propuesta'>" . htmlspecialchars($r['nombre_propuesta']) . "</td>
+                            <td data-label='Fecha de Postulación'>" . htmlspecialchars($r['fecha_postulacion']) . "</td>
                           </tr>";
                 }
             } else {
-                echo "<tr><td colspan='2' style='text-align:center;'>No tienes postulaciones registradas.</td></tr>";
+                echo "<tr><td colspan='2' class='no-data'>No tienes postulaciones registradas.</td></tr>";
             }
             ?>
         </tbody>
     </table>
 </body>
 </html>
-
-

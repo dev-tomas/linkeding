@@ -1,61 +1,33 @@
 <?php
-// Only start the session if it hasn't been started already
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Check if the user is logged in
-if (!isset($_SESSION['usuario_id'])) {
-    // Redirect to login page or show an error
-    header("Location: login.php");
-    exit();
-}
-
-include("conexion.php");
-
-// Safely retrieve the logged-in user's ID
-$id_usuario_logueado = $_SESSION['usuario_id'];
-
-// Prepare the query to find the company ID
-$sql_empresa = "SELECT id_empresa FROM empresa WHERE id_usuario = ?";
-$stmt_empresa = mysqli_prepare($cn, $sql_empresa);
-mysqli_stmt_bind_param($stmt_empresa, "i", $id_usuario_logueado);
-mysqli_stmt_execute($stmt_empresa);
-$resultado_empresa = mysqli_stmt_get_result($stmt_empresa);
-
-// Check if a company exists for this user
-if (mysqli_num_rows($resultado_empresa) > 0) {
-    $empresa = mysqli_fetch_assoc($resultado_empresa);
-    $id_empresa = $empresa['id_empresa'];
-
-    // Prepare the main query to get proposals
-    $sql = "SELECT p.*, e.nombre_estado_propuesta
-            FROM propuesta p
-            INNER JOIN estado_propuesta e ON p.id_estado_propuesta = e.id_estado_propuesta
-            INNER JOIN detalle_empresa_propuesta dep ON p.id_propuesta = dep.id_propuesta
-            WHERE dep.id_empresa = ?";
-    $stmt = mysqli_prepare($cn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id_empresa);
-    mysqli_stmt_execute($stmt);
-    $r = mysqli_stmt_get_result($stmt);
-} else {
-    // No company found for this user
-    $r = null;
-}
+require_once 'control/p_reporte_propuesta.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Propuestas</title>
-    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/reporte_propuesta.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="content">
-    <h2>Reporte de Propuestas</h2>
+    <div class="header">
+        <h2>PROPUESTAS</h2>
+        <a href="../index.php?page=propuesta" class="create-button">Crear propuesta</a>
+    </div>
+
+    <!-- Agregamos información de depuración -->
+    <?php
+    // Verificar si $r está definido y es un resultado válido
+    if ($r === null) {
+        echo "<p>Error: Resultado es NULL</p>";
+    } elseif ($r === false) {
+        echo "<p>Error en la consulta: " . mysqli_error($cn) . "</p>";
+    } else {
+        echo "<p>Total de propuestas: " . mysqli_num_rows($r) . "</p>";
+    }
+    ?>
 
     <table class="table">
         <thead>
@@ -69,8 +41,16 @@ if (mysqli_num_rows($resultado_empresa) > 0) {
         </thead>
         <tbody>
             <?php
+            // Resetear el puntero del resultado si es necesario
+            mysqli_data_seek($r, 0);
+
             if ($r && mysqli_num_rows($r) > 0) {
+                // Imprimir cada fila del resultado
                 while ($row = mysqli_fetch_assoc($r)) {
+                    // Agregar impresión de depuración
+                    echo "<!-- Depuración: ";
+                    print_r($row);
+                    echo " -->";
             ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['nombre_propuesta']); ?></td>

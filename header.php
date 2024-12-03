@@ -53,8 +53,7 @@ require_once 'control/p_header.php';
                             <li><a href="index.php?page=editar_contrasena_usuario">Cambiar contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?page=propuesta">Ingresar propuesta</a></li>
-                    <li><a href="index.php?page=reporte_propuesta">Ver propuestas</a></li>
+                    <li><a href="index.php?page=reporte_propuesta">Mis propuestas</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php elseif ($id_rol == 3): ?>
                     <li><a href="index.php?page=home">Principal</a></li>

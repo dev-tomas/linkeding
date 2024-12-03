@@ -51,7 +51,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de la Propuesta</title>
-    <link rel="stylesheet" href="css/ver_oferta.css">
+    <link rel="stylesheet" href="../css/ver_oferta.css">
 </head>
 <body>
     

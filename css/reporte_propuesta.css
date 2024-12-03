@@ -1,0 +1,189 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f8fb;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.create-button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.create-button:hover {
+    background-color: #1d6fa5;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #e0e7f1;
+}
+
+.table thead th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fb;
+}
+
+.table tbody tr:hover {
+    background-color: #eaf3fc;
+}
+
+.table td {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Action Buttons */
+a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #3498db;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1d6fa5;
+}
+
+.icon-edit {
+    color: #27ae60;
+}
+
+.icon-trash {
+    color: #e74c3c;
+}
+
+.icon-user {
+    color: #8e44ad;
+}
+
+.icon-edit:hover {
+    color: #1e8449;
+}
+
+.icon-trash:hover {
+    color: #c0392b;
+}
+
+.icon-user:hover {
+    color: #71368a;
+}
+/* Centrar las cabeceras de las tablas */
+.table thead th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center; /* Centrado */
+}
+
+/* Centrar el contenido de la columna 5 */
+.table tbody td:nth-child(5) {
+    text-align: center; /* Centrado */
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    align-items: start;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #d0d9e4;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+form textarea {
+    height: 150px; /* Altura específica para descripción y requisitos */
+    resize: none;
+}
+
+form .full-width {
+    grid-column: span 2;
+}
+
+form button {
+    grid-column: span 2;
+    justify-self: center; /* Centra el botón */
+    background-color: #3498db;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0; /* Reduce espacio vertical */
+}
+
+form button:hover {
+    background-color: #1d6fa5;
+}
+
+form textarea:nth-child(4) { /* Caja de descripción */
+    margin-bottom: 5px; /* Reduce margen inferior */
+}

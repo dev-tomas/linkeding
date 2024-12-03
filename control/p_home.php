@@ -41,7 +41,7 @@ if ($id_rol == 3) { // Rol de Postulante
             $apellido_materno = $usuario['apellido_materno_postulante'] ?? 'No especificado';
             $estado = $usuario['id_estado_postulante'] ?? 'Desconocido';
             $nombre_estado_postulante = $usuario['nombre_estado_postulante'] ?? 'Desconocido';
-            $direccion=$usuario['direccion_postulante']?? 'Desconocido';
+            $direccion = $usuario['direccion_postulante'] ?? 'Desconocido';
         }
 
         mysqli_stmt_close($stmt);

@@ -110,7 +110,7 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
     </center>
     <br><br>
 
-    <h1>GRAFICOS ESTADISTICOS</h1>
+    <center><h1>GRAFICOS ESTADISTICOS</h1></center>
     <!-- Contenedor de gráficos -->
     <div class="charts-container">
     <!-- Gráfico General -->
