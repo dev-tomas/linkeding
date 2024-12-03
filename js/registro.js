@@ -11,20 +11,35 @@ const empresaFields = `
     </div>
 
     <div class="inline-label-field">
-        <label for="celular_empresa">Celular:</label>
-        <input type="text" id="celular_empresa" name="celular" required>
+        <label for="celular">Celular:</label>
+        <input type="text" id="celular" name="celular" required>
     </div>
 
     <div class="inline-label-field">
-        <label for="direccion_empresa">Dirección:</label>
-        <input type="text" id="direccion_empresa" name="direccion" required>
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+    </div>
+
+    <!-- Subtítulo para los campos del representante -->
+    <div class="form-section-title"><center><strong>REPRESENTANTE</strong></center></div>
+    <br>
+
+    <div class="inline-label-field">
+        <label for="representante_nombres">Nombres:</label>
+        <input type="text" id="representante_nombres" name="representante_nombres" required>
     </div>
 
     <div class="inline-label-field">
-        <label for="representante_empresa">Representante:</label>
-        <input type="text" id="representante_empresa" name="representante" required>
+        <label for="representante_apellido_paterno">Apellido Paterno:</label>
+        <input type="text" id="representante_apellido_paterno" name="representante_apellido_paterno" required>
+    </div>
+
+    <div class="inline-label-field">
+        <label for="representante_apellido_materno">Apellido Materno:</label>
+        <input type="text" id="representante_apellido_materno" name="representante_apellido_materno" required>
     </div>
 `;
+
 
 // Campos de formulario para Postulante
 const postulanteFields = `
