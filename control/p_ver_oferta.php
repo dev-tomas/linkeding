@@ -4,7 +4,7 @@ include("../sections/conexion.php");
 
 
 
-// Verificar si se envió el formulario
+// Verificar si se envió el formularios
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $id_postulante = $_SESSION['usuario_id'];
