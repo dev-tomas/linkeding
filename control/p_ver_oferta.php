@@ -7,7 +7,7 @@ include("../sections/conexion.php");
 // Verificar si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $id_postulante = 1;
+    $id_postulante = $_SESSION['usuario_id'];
     $id_propuesta = $_POST['id_propuesta'];
     $fecha_postulacion = date('Y-m-d');
 
