@@ -1,0 +1,156 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Barra de navegación */
+#cssmenu {
+    background-color: #0078d4;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+/* Logo/Título */
+#cssmenu .logo {
+    display: flex;
+    align-items: center;
+}
+
+#cssmenu .logo span {
+    font-size: 24px; /* Tamaño más moderado */
+    font-weight: bold;
+}
+
+/* Menú principal */
+#cssmenu nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#cssmenu nav ul li {
+    margin: 0 10px; /* Ajuste para reducir el espacio */
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding-right: 10px;
+}
+
+#cssmenu nav ul li:last-child {
+    border-right: none;
+}
+
+#cssmenu nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px; /* Reducido para que se vea más profesional */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#cssmenu nav a:hover {
+    color: #ffcc00;
+}
+
+/* Submenús */
+#cssmenu ul ul {
+    display: none;
+    position: absolute;
+    background-color: #00509e;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#cssmenu li.has-sub:hover > ul {
+    display: block;
+}
+
+#cssmenu ul ul li {
+    margin: 0;
+    padding: 5px 10px;
+    border: none;
+}
+
+#cssmenu ul ul a {
+    font-size: 14px;
+    color: white;
+}
+
+/* Perfil del usuario */
+.profile-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.profile-container img {
+    display: block; /* Elimina márgenes colapsados si hay conflicto */
+    border-radius: 50%; /* Hace que sea un círculo perfecto */
+    border: 2px solid white; /* Añade un borde blanco */
+    width: 40px; /* Asegura un tamaño uniforme */
+    height: 40px; /* Asegura que el alto coincida */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsión */
+    aspect-ratio: 1 / 1; /* Garantiza que la relación de aspecto sea siempre 1:1 */
+}
+
+
+
+.profile-container a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.profile-container a:hover {
+    color: #ffcc00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #cssmenu {
+        flex-direction: column;
+    }
+
+    #cssmenu nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    #cssmenu nav ul li {
+        margin: 10px 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #cssmenu ul ul {
+        position: static;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #cssmenu li.has-sub:hover > ul {
+        display: block;
+    }
+}
