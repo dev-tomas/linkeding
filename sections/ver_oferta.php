@@ -58,7 +58,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
     <center><h2><strong><?php echo htmlspecialchars($empresa); ?></strong></h2></center>
     <center><h5>PROPUESTA: <?php echo htmlspecialchars($propuesta); ?></h5></center>
 
-    <form action="../linkeding/control/p_ver_oferta.php" method="POST">
+    <form action="../control/p_ver_oferta.php" method="POST">
         
     <input type="hidden" name="id_propuesta" value="<?php echo htmlspecialchars($id_propuesta); ?>">
         
