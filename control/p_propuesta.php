@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 include("../sections/conexion.php");
-$id_empresa =$_SESSION['usuario_id'] ?? null;
+$id_empresa =$_SESSION['usuario_id'];
 // Validar que todos los campos estén presentes
 
 // Validar que el usuario tenga una sesión activa con id_usuario
