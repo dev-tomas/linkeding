@@ -20,7 +20,12 @@ $nombre_titular = 'Invitado';
 $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
 
 if ($id_rol == 3) { // Rol de postulante
-    $sql_usuario = "SELECT * FROM postulante WHERE id_usuario = ?";
+    $sql_usuario = "
+        SELECT p.nombre_postulante, p.apellido_paterno_postulante, p.apellido_materno_postulante, 
+               u.ruta_imagen_usuario 
+        FROM postulante p
+        INNER JOIN usuario u ON p.id_usuario = u.id_usuario
+        WHERE u.id_usuario = ?";
     $stmt = mysqli_prepare($cn, $sql_usuario);
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['usuario_id']);
     mysqli_stmt_execute($stmt);
@@ -31,8 +36,16 @@ if ($id_rol == 3) { // Rol de postulante
         $apellido_paterno = $usuario['apellido_paterno_postulante'] ?? '';
         $apellido_materno = $usuario['apellido_materno_postulante'] ?? '';
         $nombre_titular = trim("$apellido_paterno $apellido_materno $nombre");
-        $ruta_imagen_usuario = $usuario['foto_postulante'] ?? '../img/user.svg';
+
+        // Construir la ruta completa de la imagen
+        $foto = $usuario['ruta_imagen_usuario'];
+        if (!empty($foto)) {
+            $ruta_imagen_usuario = '../img/usuario/'. $foto;
+        } else {
+            $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+        }
     }
+
 } elseif ($id_rol == 2) { // Rol de empresa
     $sql_usuario = "SELECT * FROM empresa WHERE id_usuario = ?";
     $stmt = mysqli_prepare($cn, $sql_usuario);

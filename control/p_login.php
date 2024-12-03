@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['usuario_id'] = $r_usuario['id_usuario'];
             $_SESSION['nombre_usuario'] = $r_usuario['nombre_usuario'];
-            $_SESSION['id_rol'] = $r_usuario['id_rol']; // Almacenar el rol del usuario
+            $_SESSION['id_rol'] = $r_usuario['id_rol']; // Almacenar el rol del usuarioz
 
             header("Location: ../index.php");
             exit();
