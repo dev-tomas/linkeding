@@ -26,16 +26,17 @@ $fila = mysqli_query($cn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Oferta</title>
+    <link rel="stylesheet" href="css/oferta.css">
 </head>
 <body>
-    <center><h1>OFERTAS LABORALES</h1></center>
+    <center><h1><strong>OFERTAS LABORALES</strong></h1></center>
 
-    <table border="1">
+    <table border="1" class="offer-table">
         <tr>
-            <td bgcolor="white"><strong>EMPRESA</strong></td>
-            <td bgcolor="white"><strong>FOTO</strong></td>
-            <td bgcolor="white"><strong>PROPUESTA</strong></td>
-            <td bgcolor="white"><strong>VER PROPUESTA</strong></td>
+            <td class="header-column"><strong>EMPRESA</strong></td>
+            <td class="header-column"><strong>FOTO</strong></td>
+            <td class="header-column"><strong>PROPUESTA</strong></td>
+            <td class="header-column"><strong>VER PROPUESTA</strong></td>
         </tr>
 
         <?php 
