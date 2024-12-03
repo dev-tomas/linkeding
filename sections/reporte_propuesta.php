@@ -18,14 +18,6 @@ $r = mysqli_query($cn, $sql);
 </head>
 <body>
 
-<div class="header">
-    <div class="logo"></div>
-    <div class="nav">
-        <a href="propuesta.php">Nueva Propuesta</a>
-        <a href="reportepropuesta.php" class="active">Ver Propuestas</a>
-    </div>
-</div>
-
 <div class="content">
     <h2>Reporte de Propuestas</h2>
 
@@ -50,9 +42,9 @@ $r = mysqli_query($cn, $sql);
                     <td><?php echo $row['fecha_limite']; ?></td>
                     <td><?php echo $row['nombre_estado_propuesta']; ?></td> 
                     <td>
-                        <a href="editarpropuesta.php?id=<?php echo $row['id_estado_propuesta']; ?>" class="icon-edit">✎ Editar</a>
-                        <a href="eliminar.php?id=<?php echo $row['id_estado_propuesta']; ?>" class="icon-trash">🗑 Eliminar</a>
-                        <a href="verpostulante.php?id=<?php echo $row['id_estado_propuesta']; ?>" class="icon-user">👤 Ver postulantes</a>
+                        <a href="../index.php?page=editar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-edit">✎ Editar</a>
+                        <a href="../index.php?page=eliminar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-trash">🗑 Eliminar</a>
+                        <a href="../index.php?page=ver_postulante&id=<?php echo $row['id_propuesta']; ?>" class="icon-user">👤 Ver postulantes</a>
                     </td>
                 </tr>
             <?php
