@@ -54,6 +54,7 @@ require_once 'control/p_header.php';
                         </ul>
                     </li>
                     <li><a href="index.php?page=reporte_propuesta">Mis propuestas</a></li>
+                    <li><a href="index.php?page=notificaciones">Noticicaciones</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php elseif ($id_rol == 3): ?>
                     <li><a href="index.php?page=home">Principal</a></li>
@@ -68,6 +69,7 @@ require_once 'control/p_header.php';
                     <li><a href="index.php?page=curriculum">Curriculum</a></li>
                     <li><a href="index.php?page=ofertas_laborales">Ofertas laborales</a></li>
                     <li><a href="index.php?page=mis_postulaciones">Postulaciones</a></li>
+                    <li><a href="index.php?page=notificaciones">Noticicaciones</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php else: ?>
                     <li><a href="index.php?page=login">Iniciar Sesión</a></li>
