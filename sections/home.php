@@ -15,7 +15,7 @@ require_once 'control/p_home.php';
             <div class="profile-header">
                 <div class="profile-main-info">
                     <div class="profile-image-container">
-                        <img src="<?php echo htmlspecialchars($ruta_imagen_usuario); ?>" alt="Foto de perfil" class="profile-image">
+                        <img src="<?php echo htmlspecialchars($ruta_imagen_usuario)?>?<?php echo time();?>?>" alt="Foto de perfil" class="profile-image">
                     </div>
                     <div class="profile-name-section">
                         <h1><?php echo htmlspecialchars($nombre); ?></h1>

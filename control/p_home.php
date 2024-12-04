@@ -63,6 +63,7 @@ if ($id_rol == 3) { // Rol de Postulante
         if ($result_usuario) {
             $usuario = mysqli_fetch_assoc($result_usuario);
 
+            $nombre = $usuario['razon_social_empresa'] ?? 'No especificado';
             $razon_social = $usuario['razon_social_empresa'] ?? 'No especificado';
             $representante = $usuario['representante_empresa'] ?? 'No especificado';
             $ruc = $usuario['ruc_empresa'] ?? 'No especificado';
@@ -74,10 +75,29 @@ if ($id_rol == 3) { // Rol de Postulante
     } else {
         die("Error en la preparación de la consulta de empresa: " . mysqli_error($cn));
     }
-} elseif ($id_rol == 1) { // Rol de Administrador
-    $nombre = $_SESSION['nombre_admin'] ?? 'Administrador';
-    $apellido_paterno = $_SESSION['apellido_admin'] ?? 'No especificado';
-    $apellido_materno = $_SESSION['apellido_admin'] ?? 'No especificado';
+} elseif ($id_rol == 1) {
+
+    $sql_usuario = "SELECT a.*
+    FROM usaurio u
+    LEFT JOIN id_usuario u ON a.id_usuario = u.id_usuario
+    WHERE a.id_usuario = ?";
+    $stmt = mysqli_prepare($cn, $sql_usuario);
+    // Rol de Administrador
+
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $usuario_id);
+        mysqli_stmt_execute($stmt);
+        $result_usuario = mysqli_stmt_get_result($stmt);
+
+        if ($result_usuario) {
+            $usuario = mysqli_fetch_assoc($result_usuario);
+
+            $nombre = $usuario['nombre_administrador'] ?? 'Administrador';
+            $apellido_paterno = $usuario['apellido_paterno_administrador'] ?? 'No especificado';
+            $apellido_materno = $usuario['apellido_materno_administrador'] ?? 'No especificado';
+        }
+    }
 } else { // Rol desconocido
     die("Error: Rol de usuario no identificado.");
 }

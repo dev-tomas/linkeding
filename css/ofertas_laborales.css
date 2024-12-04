@@ -1,50 +1,65 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #f5f6f8;
+    color: #2c3e50;
+    line-height: 1.6;
 }
 
 .offer-table {
     width: 90%;
-    margin: 20px auto;
-    border-collapse: collapse;
+    max-width: 1000px;
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .offer-table th, .offer-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    padding: 14px 16px;
     text-align: left;
+    transition: background-color 0.2s ease;
 }
 
 .header-column {
-    background-color: #4E5C89;
+    background-color: #3a4f7a;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .offer-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
 }
 
 .offer-table tr:hover {
-    background-color: #e6e6e6;
-    transition: background-color 0.3s ease;
+    background-color: #e6f2ff;
 }
 
 .offer-table a {
-    color: #4caf50;
+    color: #2980b9;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .offer-table a:hover {
-    color: #45a049;
+    color: #3498db;
     text-decoration: underline;
+}
+
+/* Empty state or no data styling */
+.offer-table .no-data {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    padding: 20px;
 }
 
 @media screen and (max-width: 600px) {
@@ -59,13 +74,72 @@ body {
     
     .offer-table tr {
         margin-bottom: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+    }
+    
+    .offer-table td {
+        border-bottom: 1px solid #f1f3f5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .offer-table td::before {
         content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-right: 10px;
     }
+}
+
+/* Scrollbar styling for modern browsers */
+.offer-table {
+    scrollbar-width: thin;
+    scrollbar-color: #3a4f7a #f1f3f5;
+}
+
+.offer-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.offer-table::-webkit-scrollbar-track {
+    background: #f1f3f5;
+}
+
+.offer-table::-webkit-scrollbar-thumb {
+    background-color: #3a4f7a;
+    border-radius: 4px;
+}
+
+.onlynow-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.onlynow-container img {
+    display: block; /* Elimina márgenes colapsados si hay conflicto */
+    border-radius: 50%; /* Hace que sea un círculo perfecto */
+    border: 2px solid white; /* Añade un borde blanco */
+    width: 40px; /* Asegura un tamaño uniforme */
+    height: 40px; /* Asegura que el alto coincida */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsión */
+    aspect-ratio: 1 / 1; /* Garantiza que la relación de aspecto sea siempre 1:1 */
+}
+
+.onlynow-container a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+table td:nth-child(4) { 
+    /* width: 150px; Ajusta este valor según tus necesidades */ 
+    text-align: center; /* Centra el contenido de la cuarta columna */ 
+} /* Centrar la cabecera de la cuarta columna */ 
+table th:nth-child(4) { 
+    text-align: center; /* Centra el texto de la cabecera de la cuarta columna */ 
 }

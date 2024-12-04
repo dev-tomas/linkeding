@@ -1,9 +1,6 @@
 <?php
 session_start();
 include("../sections/conexion.php");
-
-
-
 // Verificar si se envió el formularios
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     

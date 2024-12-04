@@ -11,23 +11,14 @@ require_once 'control/p_reporte_propuesta.php';
 </head>
 <body>
 
-<div class="content">
-    <div class="header">
-        <h2>PROPUESTAS</h2>
-        <a href="../index.php?page=propuesta" class="create-button">Crear propuesta</a>
-    </div>
-
-    <!-- Agregamos información de depuración -->
-    <?php
-    // Verificar si $r está definido y es un resultado válido
-    if ($r === null) {
-        echo "<p>Error: Resultado es NULL</p>";
-    } elseif ($r === false) {
-        echo "<p>Error en la consulta: " . mysqli_error($cn) . "</p>";
-    } else {
-        echo "<p>Total de propuestas: " . mysqli_num_rows($r) . "</p>";
-    }
-    ?>
+<div>   
+<div class="header">
+    <h2>
+        PROPUESTAS 
+        <span>Total de propuestas: <?php echo isset($r) && $r ? mysqli_num_rows($r) : 0; ?></span>
+    </h2>
+    <a href="../index.php?page=propuesta" class="create-button">Crear propuesta</a>
+</div>
 
     <table class="table">
         <thead>
@@ -57,10 +48,12 @@ require_once 'control/p_reporte_propuesta.php';
                     <td><?php echo htmlspecialchars($row['descripcion_propuesta']); ?></td>
                     <td><?php echo htmlspecialchars($row['fecha_limite']); ?></td>
                     <td><?php echo htmlspecialchars($row['nombre_estado_propuesta']); ?></td> 
-                    <td>
-                        <a href="../index.php?page=editar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-edit">✎ Editar</a>
-                        <a href="../index.php?page=eliminar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-trash">🗑 Eliminar</a>
-                        <a href="../index.php?page=ver_postulante&id=<?php echo $row['id_propuesta']; ?>" class="icon-user">👤 Ver postulantes</a>
+                    <td class="actions-column">
+                        <div class="action-buttons">
+                            <a href="../index.php?page=editar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-edit">✎ Editar</a>
+                            <a href="../index.php?page=eliminar_propuesta&id=<?php echo $row['id_propuesta']; ?>" class="icon-trash">🗑 Eliminar</a>
+                            <a href="../index.php?page=ver_postulante&id=<?php echo $row['id_propuesta']; ?>" class="icon-user">Ver postulantes</a>
+                        </div>
                     </td>
                 </tr>
             <?php

@@ -1,23 +1,6 @@
-<?php
-include("conexion.php");
-
-$sql = "
-SELECT 
-    e.razon_social_empresa AS nombre_empresa, 
-    p.nombre_propuesta AS propuesta
-FROM 
-    detalle_empresa_propuesta dep
-INNER JOIN 
-    empresa e ON dep.id_empresa = e.id_empresa
-INNER JOIN 
-    propuesta p ON dep.id_propuesta = p.id_propuesta
-GROUP BY 
-    e.id_empresa, p.id_propuesta
-";
-
-
-$fila = mysqli_query($cn, $sql);
-
+<?php 
+require_once 'control/p_ofertas_laborales.php';
+include('control/p_imagen_empresa.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +12,8 @@ $fila = mysqli_query($cn, $sql);
 </head>
 <body>
 <br>
-    <table border="1" class="offer-table">
+<Center><H2>OFERTAS LABORALES</H2></Center>
+    <table class="offer-table">
         <tr>
             <td class="header-column"><strong>EMPRESA</strong></td>
             <td class="header-column"><strong>FOTO</strong></td>
@@ -44,13 +28,19 @@ $fila = mysqli_query($cn, $sql);
                 <td><?php echo htmlspecialchars($r['nombre_empresa']); ?></td>
 
                 <td>
-                    FOTO
+                    <div class="onlynow-container">
+                        <?php
+                        $ruta_imagen_empresa = obtenerImagenEmpresa($r['id_empresa']);
+                        ?>
+                        <img src="<?php echo htmlspecialchars($ruta_imagen_empresa); ?>?<?php echo time(); ?>"
+                             alt="Foto de empresa" class="profile-image">
+                    </div>
                 </td>
                 
                 <td><?php echo htmlspecialchars($r['propuesta']); ?></td>
                 
                 <td>
-                <a href="index.php?page=ver_oferta&empresa=<?php echo urlencode(trim($r['nombre_empresa'])); ?>&propuesta=<?php echo urlencode(trim($r['propuesta'])); ?>">Ver Propuesta</a>
+                    <a href="index.php?page=ver_oferta&empresa=<?php echo urlencode(trim($r['nombre_empresa'])); ?>&propuesta=<?php echo urlencode(trim($r['propuesta'])); ?>">Ver Propuesta</a>
                 </td>
             </tr>
 

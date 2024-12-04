@@ -5,10 +5,11 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    font-size: 14px;
 }
 
 .content {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 20px auto;
     padding: 20px;
     background: #ffffff;
@@ -19,7 +20,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Centrar verticalmente los elementos */
     margin-bottom: 20px;
 }
 
@@ -27,12 +28,21 @@ body {
     margin: 0;
     font-size: 24px;
     color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente el contenido del título */
+}
+
+.header h2 span {
+    font-size: 14px; /* Ajustar el tamaño del texto para el total */
+    color: #555; /* Color más discreto */
 }
 
 .create-button {
-    background-color: #3498db;
+    background-color: #00d555;
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 10px 42px;
+    margin-right: 20px; 
     text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
@@ -40,7 +50,8 @@ body {
 }
 
 .create-button:hover {
-    background-color: #1d6fa5;
+    background-color: #00ba66;
+    color: #ffffff;
 }
 
 /* Table Styles */
@@ -186,4 +197,58 @@ form button:hover {
 
 form textarea:nth-child(4) { /* Caja de descripción */
     margin-bottom: 5px; /* Reduce margen inferior */
+}
+.action-buttons {
+    display: inline-flex;
+    flex-direction: flex;
+    gap: 5px; /* Incrementa el espacio vertical entre los botones */
+}
+
+.action-buttons a {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 15px; /* Tamaño similar al botón de crear propuesta */
+    text-decoration: none;
+    margin: 0;
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 10px;
+    color: #ffffff; /* Texto blanco */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+/* Colores específicos para cada botón */
+.icon-edit {
+    background-color: #ffbb00; /* Verde */
+    color: #ffffff;
+}
+
+.icon-edit:hover {
+    background-color: #ffa200; /* Verde oscuro */
+    color: #ffffff;
+}
+
+.icon-trash {
+    background-color: #e74c3c; /* Rojo */
+    color: #ffffff;
+}
+
+.icon-trash:hover {
+    background-color: #c0392b; /* Rojo oscuro */
+    color: #ffffff;
+}
+
+.icon-user {
+    background-color: #8e44ad; /* Morado */
+    color: #ffffff;
+}
+
+.icon-user:hover {
+    background-color: #71368a; /* Morado oscuro */
+    color: #ffffff;
+}
+
+/* Efecto de clic */
+.action-buttons a:active {
+    transform: scale(0.95); /* Reducir ligeramente el tamaño */
 }
