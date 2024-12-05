@@ -66,7 +66,7 @@ require_once 'control/p_header.php';
         </nav>
         <?php if ($id_rol != 0): ?>
             <div class="profile-container">
-                <a href="index.php?page=home"><?php echo htmlspecialchars ($nombre_titular); ?></a>
+                <a href="index.php?page=home"><?php echo htmlspecialchars ($nombre_usuario); ?></a>
                 <a href="index.php?page=home">
                     <img src="<?php echo htmlspecialchars($ruta_imagen_usuario); ?>" alt="home">
                 </a>

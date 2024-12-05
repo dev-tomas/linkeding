@@ -61,6 +61,6 @@ $r = mysqli_query($cn, $sql);
         </tbody>
     </table>
 </div>
-
+../index.php?page=reporte_propuesta
 </body>
 </html>
