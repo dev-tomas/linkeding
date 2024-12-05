@@ -18,19 +18,10 @@ $r = mysqli_fetch_assoc($fila);
 </head>
 <body>
 
-    <div class="header">
-        <div class="logo">
-            <a href="../index.php">Mi Sistema</a>
-        </div>
-        <div class="nav">
-            <a href="reporte_propuesta.php" class="active">Ver Propuestas</a>
-        </div>
-    </div>
-
     <!-- Contenido principal del formulario de edición -->
     <div class="content">
         <div class="container">
-            <form action="http://localhost/linkeding/control/p_editar_propuesta.php" method="post">
+            <form action="../control/p_editar_propuesta.php" method="post">
                 <fieldset>
                     <legend>Editar Propuesta</legend>
                     <div class="form-group">

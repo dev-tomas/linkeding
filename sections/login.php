@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - MyLinkedIn</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="container vh-100 d-flex justify-content-center align-items-center">
-        <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;">
-            <h3 class="text-center mb-4">Welcome to MyLinkedIn</h3>
+    <div class="container">
+        <div class="card">
+            <h3>Bienvenido a Linkeding</h3>
             <?php if (isset($error_message)): ?>
-                <p class="text-center error-message"><?php echo $error_message; ?></p>
+                <p class="error-message"><?php echo $error_message; ?></p>
             <?php endif; ?>
             <form action="../control/p_login.php" method="POST">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Log In</button>
+                <button type="submit">Ingresar</button>
             </form>
-            <div class="text-center mt-3">
-                <a href="registro.php" class="text-decoration-none">No tienes una cuenta? Registrate</a>
+            <div class="link">
+                <a href="registro.php">No tienes una cuenta? Regístrate</a>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,162 @@
+/* Estilo inspirado en LinkedIn */
+
+/* Fondo general */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f2ef; /* Fondo claro típico de LinkedIn */
+    color: #333333; /* Texto oscuro para contraste */
+}
+
+/* Título principal */
+h2 {
+    text-align: center;
+    color: #0077B5; /* Azul LinkedIn */
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff; /* Blanco limpio para el fondo de la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Encabezados de la tabla */
+table th {
+    background-color: #0077B5; /* Azul LinkedIn */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* Filas de la tabla */
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #e1e9ee;
+    font-size: 14px;
+}
+
+/* Color alternado para las filas */
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Gris claro */
+}
+
+/* Última fila (sin borde) */
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Enlace del currículum */
+table a {
+    color: #0077B5; /* Azul LinkedIn */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+/* Botón general (puedes usarlo para otros elementos) */
+button {
+    background-color: #0077B5;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #005983; /* Azul más oscuro */
+}
+
+/* Responsividad para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    table, th, td {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+.onlynow-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.onlynow-container img {
+    display: block; /* Elimina márgenes colapsados si hay conflicto */
+    border-radius: 50%; /* Hace que sea un círculo perfecto */
+    border: 2px solid white; /* Añade un borde blanco */
+    width: 40px; /* Asegura un tamaño uniforme */
+    height: 40px; /* Asegura que el alto coincida */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsión */
+    aspect-ratio: 1 / 1; /* Garantiza que la relación de aspecto sea siempre 1:1 */
+}
+
+.onlynow-container a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.onlynow-container a:hover {
+    color: #ffcc00;
+}
+/* Contenedor para el título y el enlace */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Distribuye el título a la izquierda y el enlace a la derecha */
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 10px 20px; /* Agrega un espacio interno */
+    background-color: transparent; /* Fondo transparente */
+    margin-left: 57px;
+}
+
+/* Enlace de "Regresar" con fondo transparente y borde */
+.back-button {
+    background-color: transparent; /* Fondo transparente */
+    color: #0077B5; /* Azul LinkedIn */
+    border: 2px solid #0077B5; /* Borde del mismo color que el texto */
+    padding: 8px 15px; /* Tamaño interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 14px; /* Tamaño de fuente */
+    font-weight: 500; /* Peso de fuente más destacado */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    margin-right: 57px;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background-color: #0077B5; /* Fondo azul al pasar el cursor */
+    color: #ffffff; /* Texto blanco al pasar el cursor */
+}
+/* Responsividad para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Cambia la dirección del flex para apilar los elementos */
+        align-items: center; /* Centra los elementos */
+        text-align: center; /* Centra el texto del título */
+    }
+
+    .back-button {
+        margin-top: 10px; /* Agrega un espacio encima del enlace */
+    }
+}

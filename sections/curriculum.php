@@ -39,7 +39,7 @@ include("conexion.php");
     </center>
     <br>
 
-    <form action="/linkeding/control/p_curriculum.php" method="post" enctype="multipart/form-data">
+    <form action="../control/p_curriculum.php" method="post" enctype="multipart/form-data">
 
         <fieldset align="center">
 
