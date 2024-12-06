@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje_id'])) {
     $sqli = "update mensaje set id_estado_mensaje = 2 where id_mensaje = ? and id_usuario_receptor_mensaje = ?";
     $filas = $cn->prepare($sqli);
     $filas->bind_param("ii", $mensaje, $postulante);
-    $filast->execute();
+    $filas->execute();
     $filas->close();
 
     
