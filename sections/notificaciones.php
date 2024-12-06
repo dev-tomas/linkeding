@@ -1,10 +1,25 @@
 <?php
 include("conexion.php");
 
-
 $postulante = $_SESSION['usuario_id']; 
 
+// Verificar si se recibió un mensaje para marcarlo como leído
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mensaje_id'])) {
+    $mensajeId = $_POST['mensaje_id'];
+    
+    // Actualizar el estado del mensaje a "leído"
+    $sqli= "UPDATE mensaje SET id_estado_mensaje = (SELECT id_estado_mensaje FROM estado_queja WHERE nombre_estado_mensaje = 'leído') WHERE id_mensaje = ? AND id_usuario_receptor_mensaje = ?";
+    $stmt = $cn->prepare($sqli);
+    $stmt->bind_param("ii", $mensajeId, $postulante);
+    $stmt->execute();
+    $stmt->close();
+    
+    // Enviar respuesta para indicar que se actualizó correctamente
+    echo 'ok';
+    exit;
+}
 
+// Obtener las notificaciones con el mensaje completo
 $sql = "
     SELECT
         m.id_mensaje, 
@@ -33,22 +48,6 @@ while ($row = $r->fetch_assoc()) {
 }
 
 $fila->close();
-
-
-// Marcar mensaje como leído si el usuario lo abre
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje_id'])) {
-    $mensaje = intval($_POST['mensaje_id']);
-
-    $sqli = "update mensaje set id_estado_mensaje = 2 where id_mensaje = ? and id_usuario_receptor_mensaje = ?";
-    $filas = $cn->prepare($sqli);
-    $filas->bind_param("ii", $mensaje, $postulante);
-    $filas->execute();
-    $filas->close();
-
-    
-    header("Location: index.php?page=notificaciones");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -57,31 +56,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notificaciones</title>
-    <link rel="stylesheet" href="../css/notificaciones_postulante.css">
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Notificaciones</h1>
-    <div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Notificaciones</h1>
         <?php if (empty($notificaciones)): ?>
             <p>No tienes notificaciones.</p>
         <?php else: ?>
             <?php foreach ($notificaciones as $notificacion): ?>
-                <div class="notificacion <?= $notificacion['estado'] === 'leído' ? 'leido' : 'no-leido'; ?>">
+                <div class="notificacion <?= $notificacion['estado'] === 'leído' ? 'leido' : 'no-leido'; ?> mb-3" id="notificacion-<?= $notificacion['id_mensaje']; ?>">
                     <p><strong>Empresa:</strong> <?= htmlspecialchars($notificacion['empresa_emisora'] ?? 'Desconocida'); ?></p>
                     <p><strong>Fecha:</strong> <?= htmlspecialchars($notificacion['fecha_mensaje']); ?></p>
-                    <p><strong>Mensaje:</strong> <?= htmlspecialchars($notificacion['mensaje']); ?></p>
-                    <?php if ($notificacion['estado'] !== 'leído'): ?>
-                        <form method="POST" style="display:inline;">
-                            <input type="hidden" name="mensaje_id" value="<?= $notificacion['id_mensaje']; ?>">
-                            <button type="submit" class="boton-ver">Marcar como leído</button>
-                        </form>
-                    <?php else: ?>
-                        <p><em>Ya leído</em></p>
-                    <?php endif; ?>
+                    
+                    <!-- Botón para abrir el modal -->
+                    <button 
+                        class="btn btn-info btn-sm" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#mensajeModal<?= $notificacion['id_mensaje']; ?>"
+                        onclick="marcarComoLeido(<?= $notificacion['id_mensaje']; ?>)">
+                        Ver Mensaje
+                    </button>
+
+                    <!-- Modal del mensaje -->
+                    <div 
+                        class="modal fade" 
+                        id="mensajeModal<?= $notificacion['id_mensaje']; ?>" 
+                        tabindex="-1" 
+                        aria-labelledby="mensajeModalLabel<?= $notificacion['id_mensaje']; ?>" 
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="mensajeModalLabel<?= $notificacion['id_mensaje']; ?>">
+                                        Mensaje de <?= htmlspecialchars($notificacion['empresa_emisora'] ?? 'Desconocida'); ?>
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Mensaje:</strong></p>
+                                    <p><?= htmlspecialchars($notificacion['mensaje']); ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         <?php endif; ?>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function marcarComoLeido(mensajeId) {
+            // Enviar la solicitud para cambiar el estado a leído
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Si la solicitud fue exitosa, cambiar el estado en la interfaz
+                    var notificacion = document.getElementById('notificacion-' + mensajeId);
+                    notificacion.classList.remove('no-leido');
+                    notificacion.classList.add('leido');
+                }
+            };
+            xhr.send('mensaje_id=' + mensajeId);
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
