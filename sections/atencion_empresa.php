@@ -2,9 +2,12 @@
 include("conexion.php");
 
 $sql = "SELECT e.id_empresa, e.ruc_empresa, e.razon_social_empresa, e.celular_empresa, e.direccion_empresa, 
-               e.representante_empresa, es.nombre_estado_empresa 
+               e.representante_empresa, es.nombre_estado_empresa,m.id_mensaje,m.mensaje,tm.nombre_tipo_mensaje,eq.id_estado_mensaje,eq.nombre_estado_mensaje
         FROM empresa e 
-        JOIN estado_empresa es ON e.id_estado_empresa = es.id_estado_empresa"; 
+        JOIN estado_empresa es ON e.id_estado_empresa = es.id_estado_empresa
+        JOIN mensaje m on m.id_usuario_receptor_mensaje = e.id_usuario
+        JOIN tipo_mensaje tm on tm.id_tipo_mensaje = m.id_tipo_mensaje
+        JOIN estado_queja eq on eq.id_estado_mensaje = m.id_estado_mensaje"; 
 $resultado = mysqli_query($cn, $sql);
 ?>
 
@@ -30,6 +33,9 @@ $resultado = mysqli_query($cn, $sql);
             <th>Dirección</th>
             <th>Representante</th>
             <th>Estado</th>
+            <th>Tipo</th>
+            <th>Comentario</th>
+            <th>Check</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -43,6 +49,18 @@ $resultado = mysqli_query($cn, $sql);
                 <td><?php echo $empresa['direccion_empresa']; ?></td>
                 <td><?php echo $empresa['representante_empresa']; ?></td>
                 <td><?php echo $empresa['nombre_estado_empresa']; ?></td>
+                <td><?php echo $empresa['nombre_tipo_mensaje']; ?></td>
+                <td><?php echo $empresa['mensaje']; ?></td>
+                <td>
+                            <?php if ($empresa['nombre_estado_mensaje'] === 'enviado') { ?>
+                                <form action="sections/p_leer_comen_emp.php" method="POST">
+                                    <input type="hidden" name="id_comentario" value="<?php echo $empresa['id_mensaje']; ?>">
+                                    <button type="submit" class="btn-leer">Marcar como leído</button>
+                                </form>
+                            <?php } else { ?>
+                                <span class="text-muted">No disponible</span>
+                            <?php } ?>
+                </td>
                 <td>
                     <?php if ($empresa['nombre_estado_empresa'] == 'Inactivo') { ?>
                         <button class="btn btn-success btn-sm cambiar-estado" data-id="<?php echo $empresa['id_empresa']; ?>" data-estado="Activo">Activar</button>
@@ -50,6 +68,8 @@ $resultado = mysqli_query($cn, $sql);
                         <button class="btn btn-warning btn-sm cambiar-estado" data-id="<?php echo $empresa['id_empresa']; ?>" data-estado="Inactivo">Cambiar a Inactivo</button>
                     <?php } ?>
                 </td>
+
+
             </tr>
         <?php } ?>
         </tbody>
