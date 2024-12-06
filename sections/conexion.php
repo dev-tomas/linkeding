@@ -1,6 +1,5 @@
 <?php
 
-$cn=mysqli_connect("localhost:3306","root","","linkeding");
-
+$cn=mysqli_connect("localhost","root","","linkeding");
 
 ?>
