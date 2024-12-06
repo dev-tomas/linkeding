@@ -2,5 +2,4 @@
 
 $cn=mysqli_connect("localhost","root","","linkeding");
 
-
 ?>
