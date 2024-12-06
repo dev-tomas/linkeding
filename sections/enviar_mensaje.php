@@ -53,7 +53,7 @@ if (isset($_GET['id_postulante'])) {
 
             <button type="submit">Enviar</button>
         </form>
-        <a href="index.php?page=reporte_propuesta">Volver a las propuestas</a>
+        <a href="reporte_propuesta">Volver a las propuestas</a>
     </div>
 </body>
 </html>
