@@ -62,9 +62,9 @@ include('control/p_imagen_postulante.php');
                         <?php } ?>
                     </td>
                     <td>
-                    <!-- Botón "Contactar" -->
-                    <a href="sections/enviar_mensaje.php?id_postulante=<?php echo $row['id_postulante']; ?>" class="btn-contactar">Contactar</a>
-                    </td>
+    <!-- Asegúrate de pasar TANTO el id_postulante COMO el id_propuesta -->
+    <a href="sections/enviar_mensaje.php?id_postulante=<?php echo $row['id_postulante']; ?>&id_propuesta=<?php echo $id_propuesta; ?>" class="btn-contactar">Contactar</a>
+</td>
                 </tr>
             <?php } ?>
         </tbody>

@@ -10,7 +10,6 @@ $sql = "SELECT p.id_postulante, p.id_estado_postulante, p.cip_postulante, p.dni_
         JOIN estado_queja eq on eq.id_estado_mensaje = m.id_estado_mensaje"; 
 $resultado = mysqli_query($cn, $sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -73,7 +72,6 @@ $resultado = mysqli_query($cn, $sql);
         </tbody>
     </table>
 </div>
-
 <script>
 $(document).on('click', '.cambiar-estado', function() {
     let id_postulante = $(this).data('id');

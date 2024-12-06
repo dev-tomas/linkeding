@@ -1,4 +1,5 @@
 <?php
+// notificaciones.php
 include("conexion.php");
 
 $postulante = $_SESSION['usuario_id']; 
@@ -8,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mensaje_id'])) {
     $mensajeId = $_POST['mensaje_id'];
     
     // Actualizar el estado del mensaje a "leído"
-    $sqli= "UPDATE mensaje SET id_estado_mensaje = (SELECT id_estado_mensaje FROM estado_queja WHERE nombre_estado_mensaje = 'leído') WHERE id_mensaje = ? AND id_usuario_receptor_mensaje = ?";
+    $sqli = "UPDATE mensaje SET id_estado_mensaje = (SELECT id_estado_mensaje FROM estado_mensaje WHERE nombre_estado_mensaje = 'leído') WHERE id_mensaje = ? AND id_usuario_receptor_mensaje = ?";
     $stmt = $cn->prepare($sqli);
     $stmt->bind_param("ii", $mensajeId, $postulante);
     $stmt->execute();
@@ -19,21 +20,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mensaje_id'])) {
     exit;
 }
 
-// Obtener las notificaciones con el mensaje completo
+// Obtener las notificaciones con el mensaje completo y detalles de la propuesta
 $sql = "
-    SELECT
+    SELECT 
+        n.id_notificacion,
         m.id_mensaje, 
         m.mensaje, 
         m.fecha_mensaje, 
         e.nombre_estado_mensaje AS estado, 
-        t.nombre_tipo_mensaje AS tipo,
-        emp.razon_social_empresa AS empresa_emisora
-    FROM mensaje m
-    INNER JOIN estado_queja e ON m.id_estado_mensaje = e.id_estado_mensaje
-    INNER JOIN tipo_mensaje t ON m.id_tipo_mensaje = t.id_tipo_mensaje
-    INNER JOIN usuario u ON m.id_usuario_emisor_mensaje = u.id_usuario
-    INNER JOIN empresa emp ON u.id_usuario = emp.id_usuario
-    WHERE m.id_usuario_receptor_mensaje = ? 
+        p.nombre_propuesta,
+        emp.razon_social_empresa AS nombre_emisor, 
+        p.descripcion_propuesta
+    FROM notificacion n
+    INNER JOIN mensaje m ON n.id_mensaje = m.id_mensaje
+    INNER JOIN estado_mensaje e ON m.id_estado_mensaje = e.id_estado_mensaje
+    LEFT JOIN propuesta p ON n.id_propuesta = p.id_propuesta
+    INNER JOIN usuario u_emisor ON m.id_usuario_emisor_mensaje = u_emisor.id_usuario
+    INNER JOIN empresa emp ON u_emisor.id_usuario = emp.id_usuario
+    WHERE m.id_usuario_receptor_mensaje = ?
     ORDER BY m.fecha_mensaje DESC";
 
 $fila = $cn->prepare($sql);
@@ -49,7 +53,6 @@ while ($row = $r->fetch_assoc()) {
 
 $fila->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -66,9 +69,13 @@ $fila->close();
         <?php else: ?>
             <?php foreach ($notificaciones as $notificacion): ?>
                 <div class="notificacion <?= $notificacion['estado'] === 'leído' ? 'leido' : 'no-leido'; ?> mb-3" id="notificacion-<?= $notificacion['id_mensaje']; ?>">
-                    <p><strong>Empresa:</strong> <?= htmlspecialchars($notificacion['empresa_emisora'] ?? 'Desconocida'); ?></p>
+                    <p><strong>Mensaje de:</strong> <?= htmlspecialchars($notificacion['nombre_emisor'] ?? 'Desconocido'); ?></p>
                     <p><strong>Fecha:</strong> <?= htmlspecialchars($notificacion['fecha_mensaje']); ?></p>
                     
+                    <?php if (!empty($notificacion['nombre_propuesta'])): ?>
+                        <p><strong>Propuesta:</strong> <?= htmlspecialchars($notificacion['nombre_propuesta']); ?></p>
+                    <?php endif; ?>
+
                     <!-- Botón para abrir el modal -->
                     <button 
                         class="btn btn-info btn-sm" 
@@ -89,11 +96,16 @@ $fila->close();
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="mensajeModalLabel<?= $notificacion['id_mensaje']; ?>">
-                                        Mensaje de <?= htmlspecialchars($notificacion['empresa_emisora'] ?? 'Desconocida'); ?>
+                                        Mensaje de <?= htmlspecialchars($notificacion['nombre_emisor'] ?? 'Desconocido'); ?>
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <?php if (!empty($notificacion['nombre_propuesta'])): ?>
+                                        <p><strong>Propuesta:</strong> <?= htmlspecialchars($notificacion['nombre_propuesta']); ?></p>
+                                        <p><strong>Descripción:</strong> <?= htmlspecialchars($notificacion['descripcion_propuesta']); ?></p>
+                                    <?php endif; ?>
+                                    
                                     <p><strong>Mensaje:</strong></p>
                                     <p><?= htmlspecialchars($notificacion['mensaje']); ?></p>
                                 </div>
@@ -128,12 +140,3 @@ $fila->close();
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
