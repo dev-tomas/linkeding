@@ -2,9 +2,12 @@
 include("conexion.php");
 
 $sql = "SELECT p.id_postulante, p.id_estado_postulante, p.cip_postulante, p.dni_postulante, p.nombre_postulante, p.apellido_paterno_postulante, p.apellido_materno_postulante, 
-               p.celular_postulante, p.direccion_postulante, p.fecha_nacimiento_postulante, es.nombre_estado_postulante
+               p.celular_postulante, p.direccion_postulante, p.fecha_nacimiento_postulante, es.nombre_estado_postulante,m.id_mensaje,m.mensaje,tm.nombre_tipo_mensaje,eq.id_estado_mensaje,eq.nombre_estado_mensaje
         FROM postulante p
-        JOIN estado_postulante es ON p.id_estado_postulante = es.id_estado_postulante"; 
+        JOIN estado_postulante es ON p.id_estado_postulante = es.id_estado_postulante
+        JOIN mensaje m on m.id_usuario_receptor_mensaje = p.id_usuario
+        JOIN tipo_mensaje tm on tm.id_tipo_mensaje = m.id_tipo_mensaje
+        JOIN estado_queja eq on eq.id_estado_mensaje = m.id_estado_mensaje"; 
 $resultado = mysqli_query($cn, $sql);
 ?>
 
@@ -30,6 +33,9 @@ $resultado = mysqli_query($cn, $sql);
             <th>Dirección</th>
             <th>Fecha de Nacimiento</th>
             <th>Estado</th>
+            <th>Tipo</th>
+            <th>Comentario</th>
+            <th>Check</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -43,6 +49,18 @@ $resultado = mysqli_query($cn, $sql);
                 <td><?php echo $postulante['direccion_postulante']; ?></td>
                 <td><?php echo $postulante['fecha_nacimiento_postulante']; ?></td>
                 <td><?php echo $postulante['nombre_estado_postulante']; ?></td>
+                <td><?php echo $postulante['nombre_tipo_mensaje']; ?></td>
+                <td><?php echo $postulante['mensaje']; ?></td>
+                <td>
+                            <?php if ($postulante['nombre_estado_mensaje'] === 'enviado') { ?>
+                                <form action="sections/p_leer_comen_pos.php" method="POST">
+                                    <input type="hidden" name="id_comentario" value="<?php echo $postulante['id_mensaje']; ?>">
+                                    <button type="submit" class="btn-leer">Marcar como leído</button>
+                                </form>
+                            <?php } else { ?>
+                                <span class="text-muted">No disponible</span>
+                            <?php } ?>
+                </td>
                 <td>
                     <?php if ($postulante['nombre_estado_postulante'] == 'Inactivo') { ?>
                         <button class="btn btn-success btn-sm cambiar-estado" data-id="<?php echo $postulante['id_postulante']; ?>" data-estado="Activo">Activar</button>
