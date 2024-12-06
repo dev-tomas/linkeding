@@ -1,9 +1,10 @@
 <?php
 
+
 include("conexion.php");
 
-$cod = (int) $_SESSION["usuario_id"]; // ID del usuario logueado. Convierte a entero
-$tipo_usuario = (int) $_SESSION["id_rol"]; // 2 para Empresa, 3 para Postulante. Convierte a entero
+$cod = (int) $_SESSION["usuario_id"];
+$tipo_usuario = (int) $_SESSION["id_rol"];
 
 // Validación de entrada
 function validateInput($data, $type) {
@@ -24,8 +25,15 @@ function validateNumericField($data, $length, $fieldName) {
     return null;
 }
 
+// Función para capitalizar solo la primera letra
+function capitalizeFirstLetter($str) {
+    if (empty($str)) return "";
+    return strtoupper(substr($str, 0, 1)) . substr($str, 1);
+}
+
+
 // Consulta inicial para obtener datos del usuario
-$message = ""; // Variable para mensajes de error/exito
+$message = "";
 if ($tipo_usuario == 2) { // Empresa
     $stmt = $cn->prepare("SELECT * FROM empresa WHERE id_usuario = ?");
     if ($stmt === false) {
@@ -57,22 +65,21 @@ if (!$data && empty($message)) {
 }
 
 if (isset($_POST['submit'])) {
-    $errors = []; // Array para almacenar errores de validación
+    $errors = [];
 
     if ($tipo_usuario == 2) { // Empresa
         $ruc_empresa = validateInput($_POST['ruc_empresa'], 'string');
-        $razon_social_empresa = validateInput($_POST['razon_social_empresa'], 'string');
+        $razon_social_empresa = capitalizeFirstLetter(validateInput($_POST['razon_social_empresa'], 'string'));
         $celular_empresa = validateInput($_POST['celular_empresa'], 'string');
         $direccion_empresa = validateInput($_POST['direccion_empresa'], 'string');
-        $representante_empresa = validateInput($_POST['representante_empresa'], 'string');
+        $representante_empresa = capitalizeFirstLetter(validateInput($_POST['representante_empresa'], 'string'));
 
         $rucError = validateNumericField($_POST['ruc_empresa'], 11, 'RUC');
         if ($rucError) $errors[] = $rucError;
         $celularError = validateNumericField($_POST['celular_empresa'], 9, 'Celular');
         if ($celularError) $errors[] = $celularError;
 
-
-        if (empty($errors)) { // Si no hay errores, procede a actualizar la base de datos
+        if (empty($errors)) {
             $stmt = $cn->prepare("UPDATE empresa SET ruc_empresa = ?, razon_social_empresa = ?, celular_empresa = ?, direccion_empresa = ?, representante_empresa = ? WHERE id_usuario = ?");
             if ($stmt === false) {
                 $message = "Error al preparar la consulta (empresa): " . $cn->error;
@@ -80,12 +87,14 @@ if (isset($_POST['submit'])) {
                 $stmt->bind_param("sssssi", $ruc_empresa, $razon_social_empresa, $celular_empresa, $direccion_empresa, $representante_empresa, $cod);
                 if ($stmt->execute()) {
                     $message = "Empresa actualizada correctamente.";
+                    header("Location: index.php");
+                    exit;
                 } else {
                     $message = "Error al actualizar la empresa: " . $stmt->error;
                 }
                 $stmt->close();
             }
-        } else { // Si hay errores, muestra los mensajes de error
+        } else {
             $message = "<ul style='color:red;'>";
             foreach ($errors as $error) {
                 $message .= "<li>$error</li>";
@@ -96,9 +105,9 @@ if (isset($_POST['submit'])) {
     } elseif ($tipo_usuario == 3) { // Postulante
         $cip_postulante = validateInput($_POST['cip_postulante'], 'string');
         $dni_postulante = validateInput($_POST['dni_postulante'], 'string');
-        $nombre_postulante = validateInput($_POST['nombre_postulante'], 'string');
-        $apellido_paterno_postulante = validateInput($_POST['apellido_paterno_postulante'], 'string');
-        $apellido_materno_postulante = validateInput($_POST['apellido_materno_postulante'], 'string');
+        $nombre_postulante = capitalizeFirstLetter(validateInput($_POST['nombre_postulante'], 'string'));
+        $apellido_paterno_postulante = capitalizeFirstLetter(validateInput($_POST['apellido_paterno_postulante'], 'string'));
+        $apellido_materno_postulante = capitalizeFirstLetter(validateInput($_POST['apellido_materno_postulante'], 'string'));
         $celular_postulante = validateInput($_POST['celular_postulante'], 'string');
         $direccion_postulante = validateInput($_POST['direccion_postulante'], 'string');
         $fecha_nacimiento_postulante = validateInput($_POST['fecha_nacimiento_postulante'], 'string');
@@ -110,7 +119,7 @@ if (isset($_POST['submit'])) {
         $celularError = validateNumericField($_POST['celular_postulante'], 9, 'Celular');
         if ($celularError) $errors[] = $celularError;
 
-        if (empty($errors)) { // Si no hay errores, procede a actualizar la base de datos
+        if (empty($errors)) {
             $stmt = $cn->prepare("UPDATE postulante SET cip_postulante = ?, dni_postulante = ?, nombre_postulante = ?, apellido_paterno_postulante = ?, apellido_materno_postulante = ?, celular_postulante = ?, direccion_postulante = ?, fecha_nacimiento_postulante = ? WHERE id_usuario = ?");
             if ($stmt === false) {
                 $message = "Error al preparar la consulta (postulante): " . $cn->error;
@@ -118,12 +127,14 @@ if (isset($_POST['submit'])) {
                 $stmt->bind_param("ssssssssi", $cip_postulante, $dni_postulante, $nombre_postulante, $apellido_paterno_postulante, $apellido_materno_postulante, $celular_postulante, $direccion_postulante, $fecha_nacimiento_postulante, $cod);
                 if ($stmt->execute()) {
                     $message = "Postulante actualizado correctamente.";
+                    header("Location: index.php");
+                    exit;
                 } else {
                     $message = "Error al actualizar el postulante: " . $stmt->error;
                 }
                 $stmt->close();
             }
-        } else { // Si hay errores, muestra los mensajes de error
+        } else {
             $message = "<ul style='color:red;'>";
             foreach ($errors as $error) {
                 $message .= "<li>$error</li>";
@@ -141,7 +152,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Datos</title>
-    <link rel="stylesheet" href="css/editar_usuario.css">  
+    <link rel="stylesheet" href="css/editar_usuario.css">
 </head>
 <body>
     <div class="container">
