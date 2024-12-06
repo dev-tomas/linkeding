@@ -7,12 +7,12 @@ const empresaFields = `
 
     <div class="inline-label-field">
         <label for="ruc">RUC:</label>
-        <input type="text" id="ruc" name="ruc" required>
+        <input type="number" id="ruc" name="ruc" maxlength="11" required>
     </div>
 
     <div class="inline-label-field">
         <label for="celular">Celular:</label>
-        <input type="text" id="celular" name="celular" required>
+        <input type="number" id="celular" name="celular" maxlength="9" required>
     </div>
 
     <div class="inline-label-field">
@@ -40,7 +40,6 @@ const empresaFields = `
     </div>
 `;
 
-
 // Campos de formulario para Postulante
 const postulanteFields = `
     <div class="inline-label-field">
@@ -60,17 +59,17 @@ const postulanteFields = `
 
     <div class="inline-label-field">
         <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" required>
+        <input type="number" id="dni" name="dni" maxlength="8" required>
     </div>
 
     <div class="inline-label-field">
         <label for="cip">CIP:</label>
-        <input type="text" id="cip" name="cip" required>
+        <input type="number" id="cip" name="cip" maxlength="8" required>
     </div>
 
     <div class="inline-label-field">
         <label for="celular">Celular:</label>
-        <input type="text" id="celular" name="celular" required>
+        <input type="number" id="celular" name="celular" maxlength="9" required>
     </div>
 
     <div class="inline-label-field">
@@ -95,6 +94,7 @@ const postulanteFields = `
     </div>
 `;
 
+
 // Función para manejar cambios en el rol
 document.addEventListener('DOMContentLoaded', () => {
     const rolSelect = document.getElementById("rol");
@@ -110,5 +110,38 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (selectedRol === "3") {
             dynamicFields.innerHTML = postulanteFields;
         }
+        addFieldValidations();
     });
+
+    // Agregar validaciones a los campos
+    function addFieldValidations() {
+        const fieldsToValidate = ['ruc', 'dni', 'cip', 'celular']; //Campos a validar
+
+        fieldsToValidate.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', () => {
+                    const maxLength = parseInt(field.getAttribute('maxlength'));
+                    if (field.value.length > maxLength) {
+                        field.value = field.value.slice(0, maxLength); // Limitar a longitud máxima
+                    }
+                    if (!/^\d+$/.test(field.value)) { //Verificar si es numerico
+                        showErrorAlert(`El campo ${fieldId} debe contener solo números.`);
+                        field.value = "";  //Limpiar el campo si no es numerico.
+                    }
+                });
+            }
+        });
+
+        //Validación adicional para celular (9 digitos)
+        const celularField = document.getElementById('celular');
+        if (celularField) {
+            celularField.addEventListener('blur', () => { //'blur' cuando se quita el foco
+                if (celularField.value.length !== 9) {
+                    showErrorAlert("El campo celular debe tener 9 dígitos.");
+                    celularField.value = ''; // Limpia el campo si no tiene 9 digitos.
+                }
+            })
+        }
+    }
 });

@@ -78,7 +78,7 @@ if ($id_rol == 3) { // Rol de Postulante
 } elseif ($id_rol == 1) {
 
     $sql_usuario = "SELECT a.*
-    FROM usaurio u
+    FROM usuario u
     LEFT JOIN id_usuario u ON a.id_usuario = u.id_usuario
     WHERE a.id_usuario = ?";
     $stmt = mysqli_prepare($cn, $sql_usuario);
