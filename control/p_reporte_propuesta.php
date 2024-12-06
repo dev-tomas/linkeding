@@ -28,16 +28,24 @@ if (mysqli_num_rows($resultado_empresa) > 0) {
     $empresa = mysqli_fetch_assoc($resultado_empresa);
     $id_empresa = $empresa['id_empresa'];
 
+    // Update the state of the proposals to 'expirado' if the current date is past the fecha_limite
+    $sql_update = "UPDATE propuesta 
+                   SET id_estado_propuesta = (SELECT id_estado_propuesta FROM estado_propuesta WHERE nombre_estado_propuesta = 'expirado')
+                   WHERE fecha_limite < CURDATE() AND id_estado_propuesta = (SELECT id_estado_propuesta FROM estado_propuesta WHERE nombre_estado_propuesta = 'activo')";
+    mysqli_query($cn, $sql_update);
+
     // Prepare the main query to get proposals
-    $sql = "SELECT p.*, e.nombre_estado_propuesta
+    $sql = "SELECT p.*, ep.nombre_estado_propuesta
         FROM propuesta p
-        INNER JOIN estado_propuesta e ON p.id_estado_propuesta = e.id_estado_propuesta
+        INNER JOIN estado_propuesta ep ON p.id_estado_propuesta = ep.id_estado_propuesta
         INNER JOIN detalle_empresa_propuesta dep ON p.id_propuesta = dep.id_propuesta
-        WHERE dep.id_empresa = ? ";
+        WHERE dep.id_empresa = ? AND ep.nombre_estado_propuesta IN ('activo','expirado')";
     $stmt = mysqli_prepare($cn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_empresa);
     mysqli_stmt_execute($stmt);
+
     $r = mysqli_stmt_get_result($stmt);
+    
 } else {
     // No company found for this user
     $r = null;
