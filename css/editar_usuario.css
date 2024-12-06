@@ -1,17 +1,26 @@
 body {
     font-family: sans-serif;
     background-color: #f4f4f4;
-    margin: 20px;
+    margin: 0; /* Eliminar el margen del body */
+    /* Añadir padding para mantener el espacio alrededor del contenido */
+}
+
+.header {
+    width: 100%; /* Asegurar que el header ocupe todo el ancho */
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%; /* Asegurar que el contenedor ocupe todo el ancho */
+    max-width: none; /* Eliminar la restricción de ancho máximo */
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 h1 {
     text-align: center;

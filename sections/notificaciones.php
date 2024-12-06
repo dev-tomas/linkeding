@@ -19,7 +19,6 @@ $sql = "
     INNER JOIN usuario u ON m.id_usuario_emisor_mensaje = u.id_usuario
     INNER JOIN empresa emp ON u.id_usuario = emp.id_usuario
     WHERE m.id_usuario_receptor_mensaje = ? 
-    AND t.nombre_tipo_mensaje = 'mensaje'
     ORDER BY m.fecha_mensaje DESC";
 
 $fila = $cn->prepare($sql);

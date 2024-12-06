@@ -1,6 +1,4 @@
 <?php
-
-
 include("conexion.php");
 
 $cod = (int) $_SESSION["usuario_id"];
