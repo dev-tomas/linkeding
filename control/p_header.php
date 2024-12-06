@@ -1,14 +1,12 @@
 <?php
-// Coloca esta línea al principio para evitar problemas de salida
 ob_start();
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include("sections/conexion.php");
+include __DIR__."/../sections/conexion.php";
 
-// Validar si el usuario está autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit();
@@ -41,8 +39,10 @@ if ($id_rol == 3) { // Rol de postulante
         $foto = $usuario['ruta_imagen_usuario'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+            
         }
     }
 
@@ -63,6 +63,7 @@ if ($id_rol == 3) { // Rol de postulante
         $foto = $usuario['ruta_imagen_usuario'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
         }
@@ -86,6 +87,7 @@ if ($id_rol == 3) { // Rol de postulante
         $foto = $usuario['ruta_imagen_usuario'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
         }

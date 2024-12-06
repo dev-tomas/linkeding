@@ -1,5 +1,5 @@
 <?php
-require_once 'control/p_home.php';
+require_once __DIR__.'/../control/p_home.php';
 
 include("conexion.php");
 
@@ -14,9 +14,6 @@ if (isset($_SESSION['usuario_id'])) {
     $resultado_postulante = mysqli_stmt_get_result($stmt_postulante);
     $postulante = mysqli_fetch_assoc($resultado_postulante);
     $id_postulante = $postulante['id_postulante'];
-
-
-
 
     // Consultar la base de datos para obtener las postulaciones de este usuario
     $sql = "SELECT p.nombre_propuesta, dp.fecha_postulacion

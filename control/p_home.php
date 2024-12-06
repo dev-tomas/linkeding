@@ -34,7 +34,8 @@ if ($id_rol == 3) { // Rol de Postulante
         if ($result_usuario) {
             $usuario = mysqli_fetch_assoc($result_usuario);
 
-            $nombre = $usuario['nombre_postulante'] ?? 'No especificado';
+
+            $nombre_a = $usuario['nombre_postulante'] ?? 'No especificado';
             $cip = $usuario['cip_postulante'] ?? 'No especificado';
             $dni = $usuario['dni_postulante'] ?? 'No especificado';
             $apellido_paterno = $usuario['apellido_paterno_postulante'] ?? 'No especificado';
@@ -42,6 +43,9 @@ if ($id_rol == 3) { // Rol de Postulante
             $estado = $usuario['id_estado_postulante'] ?? 'Desconocido';
             $nombre_estado_postulante = $usuario['nombre_estado_postulante'] ?? 'Desconocido';
             $direccion = $usuario['direccion_postulante'] ?? 'Desconocido';
+            $celular = $usuario['celular_postulante'] ?? 'Desconocido';
+            $id_curriculum = $usuario['id_postulante'];
+            $nombre = $nombre_a.' '.$apellido_paterno.' '.$apellido_materno;
         }
 
         mysqli_stmt_close($stmt);
@@ -64,10 +68,11 @@ if ($id_rol == 3) { // Rol de Postulante
             $usuario = mysqli_fetch_assoc($result_usuario);
 
             $nombre = $usuario['razon_social_empresa'] ?? 'No especificado';
-            $razon_social = $usuario['razon_social_empresa'] ?? 'No especificado';
             $representante = $usuario['representante_empresa'] ?? 'No especificado';
             $ruc = $usuario['ruc_empresa'] ?? 'No especificado';
             $estado = $usuario['id_estado_empresa'] ?? 'Desconocido';
+            $direccion=$usuario['direccion_empresa']??'Desconocido';
+            $celular = $usuario['celular_empresa'] ?? 'Desconocido';
             $nombre_estado_empresa = $usuario['nombre_estado_empresa'] ?? 'Desconocido';
         }
 
@@ -77,10 +82,9 @@ if ($id_rol == 3) { // Rol de Postulante
     }
 } elseif ($id_rol == 1) {
 
-    $sql_usuario = "SELECT a.*
-    FROM usaurio u
-    LEFT JOIN id_usuario u ON a.id_usuario = u.id_usuario
-    WHERE a.id_usuario = ?";
+    $sql_usuario = "SELECT*
+    FROM administrador a
+    WHERE id_usuario =?";
     $stmt = mysqli_prepare($cn, $sql_usuario);
     // Rol de Administrador
 
@@ -93,9 +97,10 @@ if ($id_rol == 3) { // Rol de Postulante
         if ($result_usuario) {
             $usuario = mysqli_fetch_assoc($result_usuario);
 
-            $nombre = $usuario['nombre_administrador'] ?? 'Administrador';
+            $nombre_a = $usuario['nombre_administrador'] ?? 'Administrador';
             $apellido_paterno = $usuario['apellido_paterno_administrador'] ?? 'No especificado';
             $apellido_materno = $usuario['apellido_materno_administrador'] ?? 'No especificado';
+            $nombre=$nombre_a.' '.$apellido_paterno.' '.$apellido_materno;
         }
     }
 } else { // Rol desconocido

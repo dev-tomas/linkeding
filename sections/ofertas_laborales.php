@@ -1,6 +1,6 @@
 <?php 
-require_once 'control/p_ofertas_laborales.php';
-include('control/p_imagen_empresa.php'); 
+require_once __DIR__.'/../control/p_ofertas_laborales.php';
+include __DIR__ .'/../control/p_imagen_empresa.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">

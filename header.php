@@ -1,5 +1,5 @@
 <?php
-require_once 'control/p_header.php';
+require_once __DIR__.'/control/p_header.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -66,7 +66,6 @@ require_once 'control/p_header.php';
                             <li><a href="index.php?page=editar_contrasena_usuario">Cambiar contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?page=curriculum">Curriculum</a></li>
                     <li><a href="index.php?page=ofertas_laborales">Ofertas laborales</a></li>
                     <li><a href="index.php?page=mis_postulaciones">Postulaciones</a></li>
                     <li><a href="index.php?page=notificaciones">Notificaciones</a></li>
