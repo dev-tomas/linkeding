@@ -19,8 +19,10 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
                 empresa e ON dep.id_empresa = e.id_empresa
             INNER JOIN 
                 propuesta p ON dep.id_propuesta = p.id_propuesta
+            INNER JOIN
+                estado_propuesta ep ON p.id_estado_propuesta = ep.id_estado_propuesta
             WHERE 
-                e.razon_social_empresa = ? AND p.nombre_propuesta = ?";
+                e.razon_social_empresa = ? AND p.nombre_propuesta = ? AND ep.nombre_estado_propuesta = 'activo'";
 
     // Preparar consulta segura
     if ($fila = $cn->prepare($sql)) {
@@ -58,7 +60,7 @@ if (isset($_GET['empresa']) && isset($_GET['propuesta'])) {
     <center><h2><strong><?php echo htmlspecialchars($empresa); ?></strong></h2></center>
     <center><h5>PROPUESTA: <?php echo htmlspecialchars($propuesta); ?></h5></center>
 
-    <form action="../control/p_ver_oferta.php" method="POST">
+    <form action="control/p_ver_oferta.php" method="POST">
         
     <input type="hidden" name="id_propuesta" value="<?php echo htmlspecialchars($id_propuesta); ?>">
         

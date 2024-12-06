@@ -4,6 +4,7 @@ include("sections/conexion.php");
 // Obtén el ID de la propuesta desde la URLs
 $id_propuesta = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+
 // Consulta para obtener los postulantes de la propuesta
 $sql = "
     SELECT 

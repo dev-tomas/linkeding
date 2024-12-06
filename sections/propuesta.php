@@ -67,7 +67,7 @@ $ruta_imagen_usuario = $usuario['ruta_imagen_usuario'] ?? 'default.png';
             }
         }
         ?>
-        <form action="../control/p_propuesta.php" method="POST">
+        <form action="control/p_propuesta.php" method="POST">
             <!-- Columna izquierda -->
             <div class="form-group">
                 <label for="propuesta">Nombre de la Propuesta:</label>
