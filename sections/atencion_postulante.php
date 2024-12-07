@@ -16,13 +16,18 @@ $sql = "SELECT p.id_postulante, p.id_estado_postulante, p.cip_postulante, p.dni_
                (SELECT u.nombre_usuario FROM usuario u WHERE u.id_usuario = m.id_usuario_emisor_mensaje) AS emisor
         FROM postulante p
         JOIN estado_postulante es ON p.id_estado_postulante = es.id_estado_postulante
-        JOIN mensaje m ON m.id_usuario_receptor_mensaje = p.id_usuario
+        JOIN queja q on q.id_usuario_queja = p.id_usuario
+        JOIN mensaje m ON m.id_mensaje = q.id_mensaje
         JOIN estado_mensaje eq ON eq.id_estado_mensaje = m.id_estado_mensaje
         LIMIT $resultadosPorPagina OFFSET $offset";
 
 $resultado = mysqli_query($cn, $sql);
 
-$sqlTotal = "SELECT COUNT(*) as total FROM postulante";
+$sqlTotal = "SELECT COUNT(*) as total FROM postulante p
+        JOIN estado_postulante es ON p.id_estado_postulante = es.id_estado_postulante
+        JOIN queja q on q.id_usuario_queja = p.id_usuario
+        JOIN mensaje m ON m.id_mensaje = q.id_mensaje
+        JOIN estado_mensaje eq ON eq.id_estado_mensaje = m.id_estado_mensaje";
 $totalResultados = mysqli_fetch_assoc(mysqli_query($cn, $sqlTotal))['total'];
 $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
 ?>
@@ -44,7 +49,7 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
         <thead>
         <tr>
             <th>Emisor</th>
-            <th>Receptor</th>
+            <th>Postulante</th>
             <th>DNI</th>
             <th>Celular</th>
             <th>Fecha de Nacimiento</th>
@@ -108,8 +113,8 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
             </ul>
         </nav>
     </div>
-
 </div>
+
 <script>
 $(document).on('click', '.cambiar-estado', function() {
     let id_postulante = $(this).data('id');

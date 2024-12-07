@@ -7,9 +7,10 @@ if ($pagina_actual < 1) $pagina_actual = 1;
 $offset = ($pagina_actual - 1) * $registros_por_pagina;
 
 $sql_total = "SELECT COUNT(*) as total FROM empresa e 
-              JOIN estado_empresa es ON e.id_estado_empresa = es.id_estado_empresa
-              JOIN mensaje m ON m.id_usuario_receptor_mensaje = e.id_usuario
-              JOIN estado_mensaje eq ON eq.id_estado_mensaje = m.id_estado_mensaje";
+        JOIN estado_empresa es ON e.id_estado_empresa = es.id_estado_empresa
+        JOIN queja q on q.id_usuario_queja = e.id_usuario
+        JOIN mensaje m ON m.id_mensaje = q.id_mensaje
+        JOIN estado_mensaje eq ON eq.id_estado_mensaje = m.id_estado_mensaje";
 $resultado_total = mysqli_query($cn, $sql_total);
 $total_registros = mysqli_fetch_assoc($resultado_total)['total'];
 
@@ -20,7 +21,8 @@ $sql = "SELECT e.id_empresa, e.ruc_empresa, e.razon_social_empresa, e.celular_em
                (SELECT u.nombre_usuario FROM usuario u WHERE u.id_usuario = m.id_usuario_emisor_mensaje) AS emisor
         FROM empresa e 
         JOIN estado_empresa es ON e.id_estado_empresa = es.id_estado_empresa
-        JOIN mensaje m ON m.id_usuario_receptor_mensaje = e.id_usuario
+        JOIN queja q on q.id_usuario_queja = e.id_usuario
+        JOIN mensaje m ON m.id_mensaje = q.id_mensaje
         JOIN estado_mensaje eq ON eq.id_estado_mensaje = m.id_estado_mensaje
         LIMIT $registros_por_pagina OFFSET $offset";
 
@@ -43,7 +45,7 @@ $resultado = mysqli_query($cn, $sql);
         <thead>
         <tr>
             <th>Emisor</th>
-            <th>Receptor</th>
+            <th>Empresa</th>
             <th>RUC</th>
             <th>Celular</th>
             <th>Representante</th>
