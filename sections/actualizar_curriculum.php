@@ -39,8 +39,8 @@ $ruta_curriculum_actual = $datos['ruta_curriculum'] ?? '';
 
 <body>
     <center>
-        <h3>Editar su Curriculum</h3>
-        <h1>EDITAR CURRICULUM</h1>
+        <h3>Actualizar su Curriculum</h3>
+        <h1>ACTUALIZAR CURRICULUM</h1>
 
         <!-- Mostrar mensajes de error -->
         <?php
