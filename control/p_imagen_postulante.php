@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../sections/conexion.php'; // Use your existing connection file
+require_once 'sections/conexion.php'; // Use your existing connection file
 
 function obtenerImagenPostulante($id_postulante) {
     global $cn; // Use the global database connection variable from conexion.php
@@ -15,7 +15,7 @@ function obtenerImagenPostulante($id_postulante) {
     if (!$stmt) {
         // Handle preparation error
         error_log("Prepared statement error: " . mysqli_error($cn));
-        return '../img/user.svg';
+        return 'img/user.svg';
     }
 
     // Bind the postulante ID parameter
@@ -26,7 +26,7 @@ function obtenerImagenPostulante($id_postulante) {
         // Handle execution error
         error_log("Statement execution error: " . mysqli_stmt_error($stmt));
         mysqli_stmt_close($stmt);
-        return '../img/user.svg';
+        return 'img/user.svg';
     }
 
     // Get the result
@@ -36,7 +36,7 @@ function obtenerImagenPostulante($id_postulante) {
         // Handle result error
         error_log("Result error: " . mysqli_error($cn));
         mysqli_stmt_close($stmt);
-        return '../img/user.svg';
+        return 'img/user.svg';
     }
 
     // Fetch the image path
@@ -47,7 +47,7 @@ function obtenerImagenPostulante($id_postulante) {
 
     // Return the image path, or a default image if null or empty
     return (!empty($fila['ruta_imagen_usuario'])) 
-        ? '../img/usuario/' . $fila['ruta_imagen_usuario'] 
-        : '../img/user.svg';
+        ? 'img/usuario/' . $fila['ruta_imagen_usuario'] 
+        : 'img/user.svg';
 }
 ?>

@@ -15,7 +15,7 @@ function obtenerImagenEmpresa($id_empresa) {
     if (!$stmt) {
         // Manejar errores en la preparación
         error_log("Error al preparar la consulta: " . mysqli_error($cn));
-        return '../img/user.svg'; // Imagen por defecto
+        return 'img/user.svg'; // Imagen por defecto
     }
 
     // Vincular el parámetro id_empresa
@@ -26,7 +26,7 @@ function obtenerImagenEmpresa($id_empresa) {
         // Manejar errores en la ejecución
         error_log("Error al ejecutar la consulta: " . mysqli_stmt_error($stmt));
         mysqli_stmt_close($stmt);
-        return '../img/user.svg'; // Imagen por defecto
+        return 'img/user.svg'; // Imagen por defecto
     }
 
     // Obtener el resultado de la consulta
@@ -36,7 +36,7 @@ function obtenerImagenEmpresa($id_empresa) {
         // Manejar errores en la obtención de resultados
         error_log("Error al obtener resultados: " . mysqli_error($cn));
         mysqli_stmt_close($stmt);
-        return '../img/user.svg'; // Imagen por defecto
+        return 'img/user.svg'; // Imagen por defecto
     }
 
     // Obtener la fila con la ruta de la imagen
@@ -47,7 +47,7 @@ function obtenerImagenEmpresa($id_empresa) {
 
     // Retornar la ruta de la imagen o una imagen por defecto si está vacía o nula
     return (!empty($fila['ruta_imagen_usuario'])) 
-        ? '../img/usuario/' . $fila['ruta_imagen_usuario'] 
-        : '../img/user.svg';
+        ? 'img/usuario/' . $fila['ruta_imagen_usuario'] 
+        : 'img/user.svg';
 }
 ?>

@@ -1,6 +1,6 @@
 <?php 
-require_once __DIR__.'/../control/p_ofertas_laborales.php';
-include __DIR__ .'/../control/p_imagen_empresa.php'; 
+require_once __DIR__. '/../control/p_ofertas_laborales.php';
+include __DIR__ . '/../control/p_imagen_empresa.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Oferta</title>
-    <link rel="stylesheet" href="../css/ofertas_laborales.css">
+    <link rel="stylesheet" href="css/ofertas_laborales.css">
 </head>
 <body>
 <br>
