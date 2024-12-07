@@ -110,7 +110,6 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
     </div>
 
 </div>
-
 <script>
 $(document).on('click', '.cambiar-estado', function() {
     let id_postulante = $(this).data('id');

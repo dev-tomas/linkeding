@@ -1,14 +1,12 @@
 <?php
-// Coloca esta línea al principio para evitar problemas de salida
 ob_start();
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include("sections/conexion.php");
+include __DIR__."/../sections/conexion.php";
 
-// Validar si el usuario está autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit();
@@ -41,13 +39,18 @@ if ($id_rol == 3) { // Rol de postulante
         $foto = $usuario['ruta_imagen_usuario'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+            
         }
     }
 
 } elseif ($id_rol == 2) { // Rol de empresa
-    $sql_usuario = "SELECT * FROM empresa WHERE id_usuario = ?";
+    $sql_usuario = "SELECT e.*,u.*
+        FROM empresa e
+        INNER JOIN usuario u ON e.id_usuario = u.id_usuario
+        WHERE u.id_usuario = ?";
     $stmt = mysqli_prepare($cn, $sql_usuario);
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['usuario_id']);
     mysqli_stmt_execute($stmt);
@@ -56,10 +59,20 @@ if ($id_rol == 3) { // Rol de postulante
     if ($usuario = mysqli_fetch_assoc($result_usuario)) {
         $nombre = $usuario['razon_social_empresa'] ?? 'No especificado';
         $nombre_titular = $nombre;
-        $ruta_imagen_usuario = $usuario['logo_empresa'] ?? '../img/user.svg';
+        // Construir la ruta completa de la imagen
+        $foto = $usuario['ruta_imagen_usuario'];
+        if (!empty($foto)) {
+            $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
+        } else {
+            $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+        }
     }
 } elseif ($id_rol == 1) { // Rol de administrador
-    $sql_usuario = "SELECT * FROM administrador WHERE id_usuario = ?";
+    $sql_usuario = "SELECT a.*,u.* 
+    FROM administrador a 
+    INNER JOIN usuario u ON a.id_usuario = u.id_usuario
+    WHERE u.id_usuario = ?";
     $stmt = mysqli_prepare($cn, $sql_usuario);
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['usuario_id']);
     mysqli_stmt_execute($stmt);
@@ -70,7 +83,14 @@ if ($id_rol == 3) { // Rol de postulante
         $apellido_paterno = $usuario['apellido_paterno_administrador'] ?? '';
         $apellido_materno = $usuario['apellido_materno_administrador'] ?? '';
         $nombre_titular = trim("$apellido_paterno $apellido_materno $nombre");
-        $ruta_imagen_usuario = $usuario['foto_administrador'] ?? '../img/user.svg';
+        // Construir la ruta completa de la imagen
+        $foto = $usuario['ruta_imagen_usuario'];
+        if (!empty($foto)) {
+            $ruta_imagen_usuario = '../img/usuario/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $foto;
+        } else {
+            $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+        }
     }
 } else {
     // Si el rol no es válido, redirige al login

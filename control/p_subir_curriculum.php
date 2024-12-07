@@ -1,6 +1,30 @@
 <?php
-include("../sections/conexion.php");
+ob_start();
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+include __DIR__."/../sections/conexion.php";
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+    $sql_usuario = "
+        SELECT p.nombre_postulante, p.apellido_paterno_postulante, p.apellido_materno_postulante, 
+               u.ruta_imagen_usuario 
+        FROM postulante p
+        INNER JOIN usuario u ON p.id_usuario = u.id_usuario
+        WHERE u.id_usuario = ?";
+    $stmt = mysqli_prepare($cn, $sql_usuario);
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION['usuario_id']);
+    mysqli_stmt_execute($stmt);
+    $result_usuario = mysqli_stmt_get_result($stmt);
+    if ($usuario = mysqli_fetch_assoc($result_usuario)) {
+        $nombre = $usuario['nombre_postulante'] ?? 'No especificado';
+    }
 // Verificar si se subió un archivo
 if (isset($_FILES['archivo'])) {
     $archivo = $_FILES['archivo'];
@@ -14,7 +38,7 @@ if (isset($_FILES['archivo'])) {
                 alert('Solo se permiten archivos pdf');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+        exit();
     }
 
     // Verificar que el archivo no esté vacío
@@ -23,7 +47,7 @@ if (isset($_FILES['archivo'])) {
                 alert('El archivo está vacío');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+        exit();
     }
 
     // Limitar tamaño de archivo (5MB)
@@ -32,11 +56,11 @@ if (isset($_FILES['archivo'])) {
                 alert('El archivo es demasiado grande');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+        exit();
     }
 
-    // Generar nombre único seguro
-    $nombre_archivo = uniqid() . '_' . bin2hex(random_bytes(8)) . '.pdf';
+    // Generar nombre de archivo único en formato especificado
+    $nombre_archivo = $nombre . '_linkeding_curriculum_usuario_.pdf';
     $ruta_destino = '../curriculum/' . $nombre_archivo;
 
     // Crear directorio si no existe
@@ -61,14 +85,14 @@ if (isset($_FILES['archivo'])) {
             $update_stmt = mysqli_prepare($cn, $update_sql);
 
             // Asume que estás trabajando con el usuario actual, ajusta según tu sistema de autenticación
-            $user_id = $_SESSION['user_id']; // Asegúrate de tener una sesión iniciada
+            $user_id = $_SESSION['usuario_id']; // Asegúrate de tener una sesión iniciada
             mysqli_stmt_bind_param($update_stmt, "ii", $curriculum_id, $user_id);
 
             if (mysqli_stmt_execute($update_stmt)) {
                 // Éxito
                 echo "<script>
                 alert('Curriculum subido exitosamente');
-                window.location.href = '../index.php?page=curriculum';
+                window.location.href = '../index.php?page=home';
                 </script>";
                 exit();
             } else {
@@ -86,7 +110,7 @@ if (isset($_FILES['archivo'])) {
                 alert('Error en la base de datos');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+            exit();
         }
     } else {
         // Error al mover archivo
@@ -94,7 +118,7 @@ if (isset($_FILES['archivo'])) {
                 alert('Error al subir el archivo');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+        exit();
     }
 } else {
     // No se subió archivo
@@ -102,6 +126,6 @@ if (isset($_FILES['archivo'])) {
                 alert('No se ha seleccionado ningun archivo');
                 window.location.href = '../index.php?page=curriculum';
                 </script>";
-                exit();
+    exit();
 }
 ?>

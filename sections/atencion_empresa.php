@@ -32,13 +32,13 @@ $resultado = mysqli_query($cn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atención a Empresas Suspendidas</title>
+    <title>Atención a Empresas - Quejas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Empresas Suspendidas</h2>
+    <h2 class="text-center mb-4">Quejas de Empresas</h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -74,10 +74,21 @@ $resultado = mysqli_query($cn, $sql);
                     <?php } ?>
                 </td>
                 <td>
+                    <?php if ($empresa['nombre_estado_mensaje'] === 'enviado') { ?>
+                        <form action="sections/p_leer_comen_emp.php" method="POST">
+                            <input type="hidden" name="id_comentario" value="<?php echo $empresa['id_mensaje']; ?>">
+                            <button type="submit" class="btn btn-primary btn-sm">Marcar como leído</button>
+                        </form>
+                    <?php } ?>
+                    
                     <?php if ($empresa['nombre_estado_empresa'] == 'Inactivo') { ?>
-                        <button class="btn btn-success btn-sm cambiar-estado" data-id="<?php echo $empresa['id_empresa']; ?>" data-estado="Activo">Activar</button>
+                        <button class="btn btn-success btn-sm cambiar-estado mt-2" 
+                                data-id="<?php echo $empresa['id_empresa']; ?>" 
+                                data-estado="Activo">Activar</button>
                     <?php } else { ?>
-                        <button class="btn btn-warning btn-sm cambiar-estado" data-id="<?php echo $empresa['id_empresa']; ?>" data-estado="Inactivo">Cambiar a Inactivo</button>
+                        <button class="btn btn-warning btn-sm cambiar-estado mt-2" 
+                                data-id="<?php echo $empresa['id_empresa']; ?>" 
+                                data-estado="Inactivo">Cambiar a Inactivo</button>
                     <?php } ?>
                 </td>
             </tr>

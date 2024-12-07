@@ -111,3 +111,35 @@ body {
     background-color: #3a4f7a;
     border-radius: 4px;
 }
+
+.onlynow-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.onlynow-container img {
+    display: block; /* Elimina márgenes colapsados si hay conflicto */
+    border-radius: 50%; /* Hace que sea un círculo perfecto */
+    border: 2px solid white; /* Añade un borde blanco */
+    width: 40px; /* Asegura un tamaño uniforme */
+    height: 40px; /* Asegura que el alto coincida */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsión */
+    aspect-ratio: 1 / 1; /* Garantiza que la relación de aspecto sea siempre 1:1 */
+}
+
+.onlynow-container a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+table td:nth-child(4) { 
+    /* width: 150px; Ajusta este valor según tus necesidades */ 
+    text-align: center; /* Centra el contenido de la cuarta columna */ 
+} /* Centrar la cabecera de la cuarta columna */ 
+table th:nth-child(4) { 
+    text-align: center; /* Centra el texto de la cabecera de la cuarta columna */ 
+}

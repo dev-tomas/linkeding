@@ -1,5 +1,5 @@
 <?php
-require_once 'control/p_header.php';
+require_once __DIR__.'/control/p_header.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -53,8 +53,8 @@ require_once 'control/p_header.php';
                             <li><a href="index.php?page=editar_contrasena_usuario">Cambiar contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?page=propuesta">Ingresar propuesta</a></li>
-                    <li><a href="index.php?page=reporte_propuesta">Ver propuestas</a></li>
+                    <li><a href="index.php?page=reporte_propuesta">Mis propuestas</a></li>
+                    <li><a href="index.php?page=notificaciones">Notificaciones</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php elseif ($id_rol == 3): ?>
                     <li><a href="index.php?page=home">Principal</a></li>
@@ -66,9 +66,9 @@ require_once 'control/p_header.php';
                             <li><a href="index.php?page=editar_contrasena_usuario">Cambiar contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?page=curriculum">Curriculum</a></li>
                     <li><a href="index.php?page=ofertas_laborales">Ofertas laborales</a></li>
-                    <li><a href="index.php?page=mis_postulaciones">Mis Postulaciones</a></li>
+                    <li><a href="index.php?page=mis_postulaciones">Postulaciones</a></li>
+                    <li><a href="index.php?page=notificaciones">Notificaciones</a></li>
                     <li><a href="index.php?page=cerrar_sesion">Cerrar sesión</a></li>
                 <?php else: ?>
                     <li><a href="index.php?page=login">Iniciar Sesión</a></li>
@@ -80,7 +80,7 @@ require_once 'control/p_header.php';
             <div class="profile-container">
                 <a href="index.php?page=home"><?php echo htmlspecialchars ($nombre_titular); ?></a>
                 <a href="index.php?page=home">
-                    <img src="<?php echo htmlspecialchars($ruta_imagen_usuario); ?>" alt="home">
+                    <img src="<?php echo htmlspecialchars($ruta_imagen_usuario)?>?<?php echo time();?>" alt="home">
                 </a>
             </div>
         <?php endif; ?>
