@@ -110,3 +110,32 @@ input[type="submit"]:hover {
         margin-right: 10px;
     }
 }
+
+/* Estilo para la paginación */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.page-link:active {
+    background-color: #2980b9;
+}
+

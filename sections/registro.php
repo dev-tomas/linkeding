@@ -30,6 +30,8 @@
                             </select>
                             <label for="foto">Foto (opcional):</label>
                             <input type="file" id="foto" name="foto" accept="image/*">
+                            <label for="foto">Foto Portada:</label>
+                            <input type="file" id="fotoportada" name="fotoportada" accept="image/*">
                             <div class="form-bottom">
                                 <button type="submit">Registrar</button>
                                 <button type="button" class="regresar" onclick="window.history.back()">Regresar</button>

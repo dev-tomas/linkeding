@@ -8,7 +8,7 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Oferta</title>
-    <link rel="stylesheet" href="../css/ofertas_laborales.css">
+    <link rel="stylesheet" href="css/ofertas_laborales.css">
 </head>
 <body>
 <br>
@@ -49,5 +49,22 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
         ?>
 
     </table>
+
+    <br>
+
+
+<center>
+    <div class="pagination">
+        <?php
+        for ($i = 0; $i < $total_paginas; $i++) {
+            $parametro = $i * $registros_por_pagina;
+            echo "<a href='index.php?page=ofertas_laborales&valor=$parametro' class='page-link'>Página " . ($i + 1) . "</a>&nbsp;";
+        }
+        ?>
+    </div>
+</center>
+        
+
+
 </body>
 </html>
