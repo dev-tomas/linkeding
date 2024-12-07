@@ -76,7 +76,7 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
 </head>
 <body>
     <br>
-    <center><h1>ESTADISTICAS GENERALES</h1></center>
+    <center><h1>ESTADÍSTICAS GENERALES</h1></center>
     <br>
 
     <!-- Tabla resumen -->
@@ -110,7 +110,7 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
     </center>
     <br><br>
 
-    <center><h1>GRAFICOS ESTADISTICOS</h1></center>
+    <center><h1>GRAFICOS ESTADÍSTICOS</h1></center>
     <!-- Contenedor de gráficos -->
     <div class="charts-container">
     <!-- Gráfico General -->
