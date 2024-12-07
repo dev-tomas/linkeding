@@ -1,4 +1,5 @@
 <?php
+
 require_once 'control/p_ver_postulante.php';
 include('control/p_imagen_postulante.php');
 ?>
@@ -25,6 +26,7 @@ include('control/p_imagen_postulante.php');
                 <th>Profesión</th>
                 <th>Dirección</th>
                 <th>Ver Currículum</th>
+                <th>Acción</th> <!-- Nueva columna -->
             </tr>
         </thead>
 
@@ -59,6 +61,10 @@ include('control/p_imagen_postulante.php');
                             <span>Currículum no disponible</span>
                         <?php } ?>
                     </td>
+                    <td>
+    <!-- Asegúrate de pasar TANTO el id_postulante COMO el id_propuesta -->
+    <a href="sections/enviar_mensaje.php?id_postulante=<?php echo $row['id_postulante']; ?>&id_propuesta=<?php echo $id_propuesta; ?>" class="btn-contactar">Contactar</a>
+</td>
                 </tr>
             <?php } ?>
         </tbody>

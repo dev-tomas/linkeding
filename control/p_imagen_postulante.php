@@ -1,5 +1,5 @@
 <?php
-require_once 'sections/conexion.php'; // Use your existing connection file
+require_once __DIR__ . '/../sections/conexion.php'; // Use your existing connection file
 
 function obtenerImagenPostulante($id_postulante) {
     global $cn; // Use the global database connection variable from conexion.php
