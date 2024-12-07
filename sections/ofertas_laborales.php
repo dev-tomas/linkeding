@@ -15,6 +15,7 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Oferta</title>
     <link rel="stylesheet" href="css/ofertas_laborales.css">
+    <link rel="stylesheet" href="css/ofertas_laborales.css">
 </head>
 <body>
 <br>
@@ -69,8 +70,6 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
         ?>
     </div>
 </center>
-        
-
 
 </body>
 </html>

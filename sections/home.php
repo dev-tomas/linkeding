@@ -28,6 +28,7 @@ require_once __DIR__ . '/../control/p_obtener_curriculum.php';
                     <div class="profile-photo">
                         <img src="<?php echo htmlspecialchars($ruta_imagen_usuario) ?>?<?php echo time(); ?>"
                             alt="Foto de perfil" class="profile-image">
+                            
                     </div>
                     <div class="profile-info">
                         <h1><?php echo htmlspecialchars($nombre); ?></h1>
