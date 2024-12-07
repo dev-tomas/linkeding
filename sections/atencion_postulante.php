@@ -113,7 +113,6 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
             </ul>
         </nav>
     </div>
-
 </div>
 
 <script>
