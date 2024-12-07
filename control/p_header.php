@@ -62,9 +62,10 @@ if ($id_rol == 3) { // Rol de postulante
         $nombre_titular = $nombre;
         // Construir la ruta completa de la imagen
         $foto = $usuario['ruta_imagen_usuario'];
+        $fotoportada = $usuario['ruta_imagen_portada'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
-            $ruta_imagen_portada = '../img/portada/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $fotoportada;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
         }
@@ -86,11 +87,13 @@ if ($id_rol == 3) { // Rol de postulante
         $nombre_titular = trim("$apellido_paterno $apellido_materno $nombre");
         // Construir la ruta completa de la imagen
         $foto = $usuario['ruta_imagen_usuario'];
+        $fotoportada = $usuario['ruta_imagen_portada'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
-            $ruta_imagen_portada = '../img/portada/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $fotoportada;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+            
         }
     }
 } else {

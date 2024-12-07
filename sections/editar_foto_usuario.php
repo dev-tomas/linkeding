@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2>Editar Fotos</h2>
-        <form action="http://localhost/linkeding/control/p_editar_foto.php" method="POST" enctype="multipart/form-data">
+        <form action="../control/p_editar_foto.php" method="POST" enctype="multipart/form-data">
             <label for="foto">Cambiar foto de perfil:</label>
             <input type="file" id="foto" name="foto" accept="image/*">
             

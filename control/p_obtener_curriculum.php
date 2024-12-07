@@ -30,7 +30,7 @@ function obtener_direccion_curriculum($id_usuario) {
 
     return (!empty($fila['ruta_curriculum'])) 
         ? '../curriculum/' . $fila['ruta_curriculum'] 
-        : 'subir_curriculum.php';
+        : '0';
 }
 
 function obtener_nombre_carrera($id_usuario) {
