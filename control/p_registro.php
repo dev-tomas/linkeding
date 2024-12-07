@@ -41,10 +41,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $foto_path = null;
             }
         }
+
+        // Manejar subida de foto de portada
+        $foto_portada_path = null;
+        if (isset($_FILES['fotoportada']) && $_FILES['fotoportada']['error'] == 0) {
+            $upload_dir = '../img/portada/';
+
+            // Obtener la extensión original del archivo
+            $file_extension_portada = strtolower(pathinfo($_FILES['fotoportada']['name'], PATHINFO_EXTENSION));
+
+            // Generar el nombre de archivo con el formato especificado
+            $foto_portada_name = $username . '_linkeding_foto_portada_' . '.' . $file_extension_portada;
+            $foto_portada_path = $upload_dir . $foto_portada_name;
+
+            // Asegurar que el directorio de subida exista
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            // Mover archivo subido
+            if (move_uploaded_file($_FILES['fotoportada']['tmp_name'], $foto_portada_path)) {
+                $foto_portada_path = $foto_portada_name;
+            } else {
+                $foto_portada_path = null;
+            }
+        }
+
+
         // Registrar al nuevo usuario con foto
-        $sql_insert_usuario = "INSERT INTO usuario (nombre_usuario, contrasena_usuario, id_rol, ruta_imagen_usuario) VALUES (?, ?, ?, ?)";
+        $sql_insert_usuario = "INSERT INTO usuario (nombre_usuario, contrasena_usuario, id_rol, ruta_imagen_usuario, ruta_imagen_portada) VALUES (?, ?, ?, ?, ?)";
         $stmt_insert_usuario = mysqli_prepare($cn, $sql_insert_usuario);
-        mysqli_stmt_bind_param($stmt_insert_usuario, "ssis", $username, $password, $rol, $foto_path);
+        mysqli_stmt_bind_param($stmt_insert_usuario, "ssiss", $username, $password, $rol, $foto_path, $foto_portada_path);
 
         if (mysqli_stmt_execute($stmt_insert_usuario)) {
             // Obtener el ID del usuario recién insertado
