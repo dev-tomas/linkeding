@@ -21,8 +21,8 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
 <Center><H2>OFERTAS LABORALES</H2></Center>
     <table class="offer-table">
         <tr>
-            <td class="header-column"><strong>EMPRESA</strong></td>
             <td class="header-column"><strong>FOTO</strong></td>
+            <td class="header-column"><strong>EMPRESA</strong></td>
             <td class="header-column"><strong>PROPUESTA</strong></td>
             <td class="header-column"><strong>VER PROPUESTA</strong></td>
         </tr>
@@ -31,8 +31,6 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
         
         while ($r = mysqli_fetch_assoc($fila)) { ?>
             <tr>
-                <td><?php echo htmlspecialchars($r['nombre_empresa']); ?></td>
-
                 <td>
                     <div class="onlynow-container">
                         <?php
@@ -42,6 +40,8 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
                              alt="Foto de empresa" class="profile-image">
                     </div>
                 </td>
+                <td><?php echo htmlspecialchars($r['nombre_empresa']); ?></td>
+
                 
                 <td><?php echo htmlspecialchars($r['propuesta']); ?></td>
                 
