@@ -20,7 +20,7 @@ $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
 if ($id_rol == 3) { // Rol de postulante
     $sql_usuario = "
         SELECT p.nombre_postulante, p.apellido_paterno_postulante, p.apellido_materno_postulante, 
-               u.ruta_imagen_usuario 
+               u.ruta_imagen_usuario, u.ruta_imagen_portada 
         FROM postulante p
         INNER JOIN usuario u ON p.id_usuario = u.id_usuario
         WHERE u.id_usuario = ?";
@@ -37,9 +37,10 @@ if ($id_rol == 3) { // Rol de postulante
 
         // Construir la ruta completa de la imagen
         $foto = $usuario['ruta_imagen_usuario'];
+        $fotoportada = $usuario['ruta_imagen_portada'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
-            $ruta_imagen_portada = '../img/portada/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $fotoportada;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
             
@@ -61,9 +62,10 @@ if ($id_rol == 3) { // Rol de postulante
         $nombre_titular = $nombre;
         // Construir la ruta completa de la imagen
         $foto = $usuario['ruta_imagen_usuario'];
+        $fotoportada = $usuario['ruta_imagen_portada'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
-            $ruta_imagen_portada = '../img/portada/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $fotoportada;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
         }
@@ -85,11 +87,13 @@ if ($id_rol == 3) { // Rol de postulante
         $nombre_titular = trim("$apellido_paterno $apellido_materno $nombre");
         // Construir la ruta completa de la imagen
         $foto = $usuario['ruta_imagen_usuario'];
+        $fotoportada = $usuario['ruta_imagen_portada'];
         if (!empty($foto)) {
             $ruta_imagen_usuario = '../img/usuario/'. $foto;
-            $ruta_imagen_portada = '../img/portada/'. $foto;
+            $ruta_imagen_portada = '../img/portada/'. $fotoportada;
         } else {
             $ruta_imagen_usuario = '../img/user.svg'; // Imagen por defecto
+            
         }
     }
 } else {

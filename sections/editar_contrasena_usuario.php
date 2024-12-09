@@ -1,54 +1,54 @@
 <?php
-
-include("conexion.php");
-
-
-$idUsuario = $_SESSION["usuario_id"]; // Asegúrate de que auth.php establece esto correctamente
-
-// Mostrar mensaje de error si existe
-if (isset($_GET['error'])) {
-    $mensajeError = "";
-    switch($_GET['error']){
-        case 'contrasenas_no_coinciden': $mensajeError = "Las contraseñas no coinciden."; break;
-        case 'contrasena_corta': $mensajeError = "La contraseña debe tener al menos 8 caracteres."; break;
-        case 'actualizacion_fallida': $mensajeError = "Error al actualizar la contraseña. Intenta de nuevo."; break;
-    }
-    echo "<div style='color: red; text-align: center;'>$mensajeError</div>";
-}
+// Incluir la conexión a la base de datos y cualquier validación previa, como la autenticación.
+include("conexion.php"); 
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Contraseña</title>
+    
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="css/cambiar_password.css">
 </head>
 <body>
-    <br>
-    <center>
-    <h2>Cambiar Contraseña</h2>
-    <br>
-<form action="../control/p_actualizar_contrasena.php" method="post">
+    <div class="container">
+        <div class="form-container">
+            <h2>Cambiar Contraseña</h2>
+            
+            <!-- Formulario para cambiar la contraseña -->
+            <form action="http://localhost/linkeding/control/p_actualizar_contrasena.php" method="post">
+                <div class="input-group">
+                    <label for="txtpass">Nueva contraseña (mínimo 8 caracteres)</label>
+                    <input type="password" id="txtpass" name="txtpass" required>
+                </div>
 
-    <table border="1" cellspacing="0" align="center" bgcolor="lightblue" width="600">
-        <tr>
-            <td>Nueva contraseña (mínimo 8 caracteres)</td>
-            <td> <input type="password" name="txtpass" required></td>
-        </tr>
-        <tr>
-            <td>Repetir contraseña</td>
-            <td><input type="password" name="txtrepass" required></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Cambiar contraseña">
-            </td>
-        </tr>
-    </table>
+                <div class="input-group">
+                    <label for="txtrepass">Repetir contraseña</label>
+                    <input type="password" id="txtrepass" name="txtrepass" required>
+                </div>
 
-</form>
-    </center>
+                <div class="input-group">
+                    <input type="submit" value="Cambiar contraseña">
+                </div>
+            </form>
+
+            <!-- Manejo de errores, si los hay -->
+            <?php
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'contrasenas_no_coinciden') {
+                    echo "<p class='error'>Las contraseñas no coinciden. Por favor, inténtelo nuevamente.</p>";
+                } elseif ($_GET['error'] == 'contrasena_corta') {
+                    echo "<p class='error'>La contraseña debe tener al menos 8 caracteres.</p>";
+                } elseif ($_GET['error'] == 'actualizacion_fallida') {
+                    echo "<p class='error'>Hubo un error al actualizar la contraseña. Inténtelo más tarde.</p>";
+                }
+            }
+            ?>
+        </div>
+    </div>
 </body>
 </html>

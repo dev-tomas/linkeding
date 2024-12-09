@@ -44,7 +44,7 @@ if ($id_rol == 3) { // Rol de Postulante
             $nombre_estado_postulante = $usuario['nombre_estado_postulante'] ?? 'Desconocido';
             $direccion = $usuario['direccion_postulante'] ?? 'Desconocido';
             $celular = $usuario['celular_postulante'] ?? 'Desconocido';
-            $id_curriculum = $usuario['id_postulante'];
+            $id_curriculum = $usuario['id_curriculum'];
             $nombre = $nombre_a.' '.$apellido_paterno.' '.$apellido_materno;
         }
 

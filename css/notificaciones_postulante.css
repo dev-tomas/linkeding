@@ -1,50 +1,141 @@
-/* Estilo general */
 body {
-    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-h1 {
+.cabecera {
+    background-color: #4267B2;
+    color: #fff;
+    padding: 15px;
     text-align: center;
-    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Notificaciones */
+.contenido {
+    flex: 1;
+    padding: 15px;
+    margin-top: 60px;
+    min-height: calc(100vh - 170px); /* Altura mínima para evitar que la paginación se mueva */
+    box-sizing: border-box;
+}
+
+.notificacion-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+.notificacion-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de la empresa */
+.profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Contenedor principal de la notificación */
 .notificacion {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.no-leido {
-    background-color: #f9f9f9;
-}
-
-.leido {
-    background-color: #e9e9e9;
-}
-
-/* Botón */
-.boton-ver {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    flex-grow: 1;
+    color: #444;
     font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    flex-direction: row; /* Alinea la imagen, el mensaje y el botón en una fila */
+    align-items: center;
+    justify-content: space-between; /* Distribuye los elementos de manera equitativa */
 }
 
-.boton-ver:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+/* Estilo para la información del mensaje */
+.notificacion .info {
+    flex-grow: 1; /* Para que ocupe el espacio disponible */
+    margin-right: 15px; /* Para dejar espacio entre el mensaje y el botón */
 }
 
-/* Sin notificaciones */
-p {
-    text-align: center;
-    font-size: 16px;
-    color: #666;
+.notificacion .info strong {
+    color: #000;
+}
+
+.notificacion .boton {
+    display: flex; /* Se asegura de que el botón se alinee correctamente */
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+}
+
+.notificacion .boton button {
+    background-color: #4267B2;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover para el botón */
+.notificacion .boton button:hover {
+    background-color: #365899;
+}
+
+/* Paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 15px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paginacion .pagination {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.paginacion .pagination li {
+    margin: 0;
+}
+
+.paginacion .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #4267B2;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paginacion .pagination li a:hover {
+    background-color: #4267B2;
+    color: #fff;
+}
+
+.paginacion .pagination li.active a {
+    background-color: #4267B2;
+    color: #fff;
+}
+
+.paginacion .pagination li.disabled a {
+    color: #ccc;
+    pointer-events: none;
 }
