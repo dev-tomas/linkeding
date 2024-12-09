@@ -39,11 +39,14 @@ include('control/p_imagen_postulante.php');
                     </td>
                     <td>
                         <div class="onlynow-container">
+
+                        <a href="index.php?page=ver_home&id_postulante=<?php echo $row['id_postulante']; ?>">
                             <?php
                             $ruta_imagen_usuario = obtenerImagenPostulante($row['id_postulante']);
                             ?>
                             <img src="<?php echo htmlspecialchars($ruta_imagen_usuario); ?>?<?php echo time(); ?>"
-                                alt="Foto de perfil" class="profile-image">
+                                alt="Foto de empresa" class="profile-image">
+                        </a>
                         </div>
                     </td>
 

@@ -1,6 +1,6 @@
-<?php 
-require_once __DIR__.'/../control/p_ofertas_laborales.php';
-include __DIR__ .'/../control/p_imagen_empresa.php'; 
+<?php
+require_once __DIR__ . '/../control/p_ofertas_laborales.php';
+include __DIR__ . '/../control/p_imagen_empresa.php';
 
 
 
@@ -10,6 +10,7 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +18,12 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
     <link rel="stylesheet" href="css/ofertas_laborales.css">
     <link rel="stylesheet" href="css/ofertas_laborales.css">
 </head>
+
 <body>
-<br>
-<Center><H2>OFERTAS LABORALES</H2></Center>
+    <br>
+    <Center>
+        <H2>OFERTAS LABORALES</H2>
+    </Center>
     <table class="offer-table">
         <tr>
             <td class="header-column"><strong>FOTO</strong></td>
@@ -28,31 +32,35 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
             <td class="header-column"><strong>VER PROPUESTA</strong></td>
         </tr>
 
-        <?php 
-        
+        <?php
+
         while ($r = mysqli_fetch_assoc($fila)) { ?>
             <tr>
                 <td>
                     <div class="onlynow-container">
-                        <?php
-                        $ruta_imagen_empresa = obtenerImagenEmpresa($r['id_empresa']);
-                        ?>
-                        <img src="<?php echo htmlspecialchars($ruta_imagen_empresa); ?>?<?php echo time(); ?>"
-                             alt="Foto de empresa" class="profile-image">
+                        <a href="index.php?page=ver_home&id_empresa=<?php echo $r['id_empresa']; ?>">
+                            <?php
+                            $ruta_imagen_empresa = obtenerImagenEmpresa($r['id_empresa']);
+                            ?>
+                            <img src="<?php echo htmlspecialchars($ruta_imagen_empresa); ?>?<?php echo time(); ?>"
+                                alt="Foto de empresa" class="profile-image">
+                        </a>
                     </div>
                 </td>
                 <td><?php echo htmlspecialchars($r['nombre_empresa']); ?></td>
 
-                
+
                 <td><?php echo htmlspecialchars($r['propuesta']); ?></td>
-                
+
                 <td>
-                    <a href="index.php?page=ver_oferta&empresa=<?php echo urlencode(trim($r['nombre_empresa'])); ?>&propuesta=<?php echo urlencode(trim($r['propuesta'])); ?>">Ver Propuesta</a>
+                    <a
+                        href="index.php?page=ver_oferta&empresa=<?php echo urlencode(trim($r['nombre_empresa'])); ?>&propuesta=<?php echo urlencode(trim($r['propuesta'])); ?>">Ver
+                        Propuesta</a>
                 </td>
             </tr>
 
-        <?php 
-        } 
+        <?php
+        }
         ?>
 
     </table>
@@ -60,16 +68,17 @@ include __DIR__ .'/../control/p_imagen_empresa.php';
     <br>
 
 
-<center>
-    <div class="pagination">
-        <?php
-        for ($i = 0; $i < $total_paginas; $i++) {
-            $parametro = $i * $registros_por_pagina;
-            echo "<a href='index.php?page=ofertas_laborales&valor=$parametro' class='page-link'>Página " . ($i + 1) . "</a>&nbsp;";
-        }
-        ?>
-    </div>
-</center>
+    <center>
+        <div class="pagination">
+            <?php
+            for ($i = 0; $i < $total_paginas; $i++) {
+                $parametro = $i * $registros_por_pagina;
+                echo "<a href='index.php?page=ofertas_laborales&valor=$parametro' class='page-link'>Página " . ($i + 1) . "</a>&nbsp;";
+            }
+            ?>
+        </div>
+    </center>
 
 </body>
+
 </html>
