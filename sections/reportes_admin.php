@@ -1,9 +1,23 @@
 <?php
 include("conexion.php");
 
-$sql = "SELECT * FROM postulante";
+$resultadosPorPagina = 5;
+
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+if ($pagina < 1) $pagina = 1;
+
+$offset = ($pagina - 1) * $resultadosPorPagina;
+
+$sql = "SELECT * FROM postulante
+        LIMIT $resultadosPorPagina OFFSET $offset";
+
 $resultado = mysqli_query($cn, $sql);
+
+$sqlTotal = "SELECT COUNT(*) as total FROM postulante";
+$totalResultados = mysqli_fetch_assoc(mysqli_query($cn, $sqlTotal))['total'];
+$totalPaginas = ceil($totalResultados / $resultadosPorPagina);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -56,9 +70,31 @@ $resultado = mysqli_query($cn, $sql);
         <?php } ?>
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+                <?php if ($pagina > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=reportes_admin&pagina=<?php echo $pagina - 1; ?>">Anterior</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <li class="page-item <?php echo $i == $pagina ? 'active' : ''; ?>">
+                        <a class="page-link" href="index.php?page=reportes_admin&pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($pagina < $totalPaginas): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?page=reportes_admin&pagina=<?php echo $pagina + 1; ?>">Siguiente</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
 </div>
 
-<!-- Modal para editar -->
 <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -69,39 +105,48 @@ $resultado = mysqli_query($cn, $sql);
             <form method="POST" action="sections/actualizar_postulante.php">
                 <div class="modal-body">
                     <input type="hidden" name="id_postulante" id="modal-id">
-                    <div class="mb-3">
-                        <label for="modal-cip" class="form-label">CIP:</label>
-                        <input type="text" class="form-control" id="modal-cip" name="cip_postulante" maxlength="8" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-cip" class="form-label">CIP:</label>
+                            <input type="text" class="form-control" id="modal-cip" name="cip_postulante" maxlength="8" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-dni" class="form-label">DNI:</label>
+                            <input type="text" class="form-control" id="modal-dni" name="dni_postulante" maxlength="8" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="modal-dni" class="form-label">DNI:</label>
-                        <input type="text" class="form-control" id="modal-dni" name="dni_postulante" maxlength="8" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="modal-nombre" name="nombre_postulante" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-apellido-paterno" class="form-label">Apellido Paterno:</label>
+                            <input type="text" class="form-control" id="modal-apellido-paterno" name="apellido_paterno_postulante" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="modal-nombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="modal-nombre" name="nombre_postulante" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-apellido-materno" class="form-label">Apellido Materno:</label>
+                            <input type="text" class="form-control" id="modal-apellido-materno" name="apellido_materno_postulante" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-celular" class="form-label">Celular:</label>
+                            <input type="text" class="form-control" id="modal-celular" name="celular_postulante" maxlength="12" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="modal-apellido-paterno" class="form-label">Apellido Paterno:</label>
-                        <input type="text" class="form-control" id="modal-apellido-paterno" name="apellido_paterno_postulante" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="modal-apellido-materno" class="form-label">Apellido Materno:</label>
-                        <input type="text" class="form-control" id="modal-apellido-materno" name="apellido_materno_postulante" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="modal-celular" class="form-label">Celular:</label>
-                        <input type="text" class="form-control" id="modal-celular" name="celular_postulante" maxlength="12" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="modal-direccion" class="form-label">Dirección:</label>
-                        <input type="text" class="form-control" id="modal-direccion" name="direccion_postulante" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="modal-fecha-nacimiento" class="form-label">Fecha de Nacimiento:</label>
-                        <input type="date" class="form-control" id="modal-fecha-nacimiento" name="fecha_nacimiento_postulante" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-direccion" class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" id="modal-direccion" name="direccion_postulante" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="modal-fecha-nacimiento" class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" id="modal-fecha-nacimiento" name="fecha_nacimiento_postulante" required>
+                        </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Actualizar</button>

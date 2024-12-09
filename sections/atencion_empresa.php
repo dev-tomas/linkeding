@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
 
-$registros_por_pagina = 1;
+$registros_por_pagina = 5;
 $pagina_actual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 if ($pagina_actual < 1) $pagina_actual = 1;
 $offset = ($pagina_actual - 1) * $registros_por_pagina;

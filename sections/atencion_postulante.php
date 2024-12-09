@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
 
-$resultadosPorPagina = 10;
+$resultadosPorPagina = 5;
 
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 if ($pagina < 1) $pagina = 1;
