@@ -63,6 +63,7 @@ $data_empresa_ina = mysqli_fetch_assoc($result_estado_emrpesa_ina);
 $sql_usuarios = "SELECT COUNT(*) AS total_usuarios FROM usuario";
 $result_usuarios = mysqli_query($cn, $sql_usuarios);
 $data_usuarios = mysqli_fetch_assoc($result_usuarios);
+
 ?>
 
 <!DOCTYPE html>
@@ -70,77 +71,59 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas Generales</title>
-    <link rel="stylesheet" href="css/estadistica.css">
+    <title>Panel de control - Linkeding</title>
+    <link rel="stylesheet" href="../css/estadistica.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <br>
-    <center><h1>ESTADÍSTICAS GENERALES</h1></center>
-    <br>
+    <div class="analytics-dashboard">
+        <div class="dashboard-header">
+            <h1>Panel de control - Linkeding</h1>
+            <p>Información detallada sobre usuarios, empresas y propuestas</p>
+        </div>
 
-    <!-- Tabla resumen -->
-    <center>
-        <table border="1" cellspacing="0" bgcolor="black" width="600">
-            <tr>
-                <th>Descripción</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td align="center">Postulantes</td>
-                <td align="center"><?php echo $data_postulantes['total_postulantes']; ?></td>
-            </tr>
-            <tr>
-                <td align="center">Empresas</td>
-                <td align="center"><?php echo $data_empresas['total_empresas']; ?></td>
-            </tr>
-            <tr>
-                <td align="center">Propuestas Activas</td>
-                <td align="center"><?php echo $data_propuestas_a['total_propuestas_activas']; ?></td>
-            </tr>
-            <tr>
-                <td align="center">Propuestas Inactivas</td>
-                <td align="center"><?php echo $data_propuestas_ina['total_propuestas_inactivas']; ?></td>
-            </tr>
-            <tr>
-                <td align="center">Usuarios</td>
-                <td align="center"><?php echo $data_usuarios['total_usuarios']; ?></td>
-            </tr>
-        </table>
-    </center>
-    <br><br>
+        <div class="summary-card">
+            <div class="summary-grid">
+                <div class="summary-item blue-metric">
+                    <div class="summary-number"><?php echo $data_postulantes['total_postulantes']; ?></div>
+                    <div class="summary-label">Postulantes</div>
+                </div>
+                <div class="summary-item green-metric">
+                    <div class="summary-number"><?php echo $data_empresas['total_empresas']; ?></div>
+                    <div class="summary-label">Empresas</div>
+                </div>
+                <div class="summary-item purple-metric">
+                    <div class="summary-number"><?php echo $data_propuestas_a['total_propuestas_activas']; ?></div>
+                    <div class="summary-label">Propuestas Activas</div>
+                </div>
+                <div class="summary-item red-metric">
+                    <div class="summary-number"><?php echo $data_usuarios['total_usuarios']; ?></div>
+                    <div class="summary-label">Total Usuarios</div>
+                </div>
+            </div>
+        </div>
 
-    <center><h1>GRAFICOS ESTADÍSTICOS</h1></center>
-    <!-- Contenedor de gráficos -->
-    <div class="charts-container">
-    <!-- Gráfico General -->
-    <div class="chart-item">
-        <h3>Total de Postulantes y Empresas</h3>
-        <canvas id="generalChart"></canvas>
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>Postulantes vs Empresas</h3>
+                <canvas id="generalChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Estado Propuestas</h3>
+                <canvas id="propuestaChart"></canvas>
+            </div>
+            <div class="chart-card" style="grid-column: span 2;">
+                <h3>Estado de Postulantes</h3>
+                <canvas id="estadoPostulantesChart"></canvas>
+            </div>
+        </div>
+
+        <div class="dashboard-footer">
+            © 2024 Panel de control de Linkeding
+        </div>
     </div>
-
-    <!-- Gráfico de Propuestas -->
-    <div class="chart-item">
-        <h3>Estado de Propuestas</h3>
-        <canvas id="propuestaChart"></canvas>
-    </div>
-</div>
-
-<div class="charts-container">
-    <!-- Gráfico de Estado de Postulantes -->
-    <div class="chart-item">
-        <h3>Estado de los Postulantes</h3>
-        <canvas id="estadoPostulantesChart"></canvas>
-    </div>
-
-    <!-- Gráfico de Estado de Empresas -->
-    <div class="chart-item">
-        <h3>Estado de las Empresas</h3>
-        <canvas id="estadoEmpresasChart"></canvas>
-    </div>
-</div>
-
     <script>
+        // Mantén los scripts de Chart.js originales
         // GRAFICO 1
         new Chart(document.getElementById('generalChart').getContext('2d'), {
             type: 'pie',
@@ -151,6 +134,12 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
                     backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(54, 162, 235, 0.8)']
                 }]
             },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
         });
     
         // GRAFICO 2
@@ -163,6 +152,12 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
                     backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)']
                 }]
             },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
         });
 
         // GRAFICO 3
@@ -181,20 +176,15 @@ $data_usuarios = mysqli_fetch_assoc($result_usuarios);
                     backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 159, 64, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(75, 192, 192, 0.8)']
                 }]
             },
-        });
-
-        // GRAFICO 4
-        new Chart(document.getElementById('estadoEmpresasChart').getContext('2d'), {
-            type: 'pie',
-            data: {
-                labels: ['Activo', 'Inactivo'],
-                datasets: [{
-                    data: [<?php echo $data_empresa_a['empresa_estado_a']; ?>, <?php echo $data_empresa_ina['empresa_estado_ina']; ?>],
-                    backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(201, 203, 207, 0.8)']
-                }]
-            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
-
 </body>
 </html>

@@ -1,70 +1,58 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #f5f6f8;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.cabecera {
-    background-color: #4267B2;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #2c3e50;
+    line-height: 1.6;
 }
 
 .contenido {
     flex: 1;
     padding: 15px;
-    margin-top: 60px;
-    min-height: calc(100vh - 170px); /* Altura mínima para evitar que la paginación se mueva */
+    margin-top: 10px;
+    min-height: calc(85vh - 150px); /* Ajuste de altura para mantener consistencia */
     box-sizing: border-box;
 }
 
 .notificacion-container {
     display: flex;
     align-items: center;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 12px;
     transition: box-shadow 0.3s ease;
 }
 
 .notificacion-container:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* Imagen de la empresa */
 .profile-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
-/* Contenedor principal de la notificación */
 .notificacion {
     flex-grow: 1;
-    color: #444;
     font-size: 14px;
     display: flex;
-    flex-direction: row; /* Alinea la imagen, el mensaje y el botón en una fila */
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* Distribuye los elementos de manera equitativa */
+    justify-content: space-between;
 }
 
-/* Estilo para la información del mensaje */
 .notificacion .info {
-    flex-grow: 1; /* Para que ocupe el espacio disponible */
-    margin-right: 15px; /* Para dejar espacio entre el mensaje y el botón */
+    flex-grow: 1;
+    margin-right: 12px;
 }
 
 .notificacion .info strong {
@@ -72,43 +60,44 @@ body {
 }
 
 .notificacion .boton {
-    display: flex; /* Se asegura de que el botón se alinee correctamente */
-    justify-content: flex-end; /* Alinea el botón a la derecha */
+    display: flex;
+    justify-content: flex-end;
 }
 
 .notificacion .boton button {
-    background-color: #4267B2;
+    background-color: #3a4f7a;
     color: #fff;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 6px 25px;
+    border-radius: 4px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 40px;
 }
 
-/* Efecto de hover para el botón */
 .notificacion .boton button:hover {
-    background-color: #365899;
+    background-color: #26395e;
 }
 
-/* Paginación */
 .paginacion {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f2f5;
-    padding: 15px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f5f6f8;
+    padding: 12px 12px; /* Corrige el padding */
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.08);
+    margin: 0 auto; /* Centra horizontalmente */
+    width: 98%; /* Usa todo el ancho disponible */
 }
 
 .paginacion .pagination {
     display: inline-flex;
     list-style: none;
     padding: 0;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
 
@@ -118,24 +107,24 @@ body {
 
 .paginacion .pagination li a {
     display: block;
-    padding: 10px 15px;
+    padding: 8px 12px;
     text-decoration: none;
-    color: #4267B2;
-    font-weight: bold;
+    color: #3a4f7a;
+    font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .paginacion .pagination li a:hover {
-    background-color: #4267B2;
+    background-color: #1d3056;
     color: #fff;
 }
 
 .paginacion .pagination li.active a {
-    background-color: #4267B2;
+    background-color: #3a4f7a;
     color: #fff;
 }
 
 .paginacion .pagination li.disabled a {
-    color: #ccc;
+    color: #bbb;
     pointer-events: none;
 }

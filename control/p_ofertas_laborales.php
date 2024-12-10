@@ -14,14 +14,12 @@ if (empty($ruta_curriculum)) {
 
 } else {
 
-    $registros_por_pagina = 5;
+    $postulante = $_SESSION['usuario_id'];
 
-    // Determinar desde qué registro empezar
-    if (isset($_GET["valor"])) {
-        $limite_inicio = intval($_GET["valor"]);
-    } else {
-        $limite_inicio = 0;
-    }
+    // PAGINACIÓN
+    $NumeroNotificaciones = 5;
+    $PaginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $Orden = ($PaginaActual - 1) * $NumeroNotificaciones;
 
     $sql = "SELECT 
     e.id_empresa,
@@ -38,9 +36,8 @@ if (empty($ruta_curriculum)) {
         estado_propuesta ep ON p.id_estado_propuesta = ep.id_estado_propuesta
     WHERE
         ep.nombre_estado_propuesta IN ('activo','expirado')
-
-    LIMIT $limite_inicio, $registros_por_pagina;
-    ";
+    LIMIT $Orden, $NumeroNotificaciones;";
+;
 
 
         $fila = mysqli_query($cn, $sql);
@@ -56,10 +53,10 @@ if (empty($ruta_curriculum)) {
         WHERE ep.nombre_estado_propuesta IN ('activo', 'expirado');
         ";
         $resultado_total = mysqli_query($cn, $sql_total);
-        $total_registros = mysqli_fetch_assoc($resultado_total)['total'];
+        $total_registros = mysqli_fetch_assoc($resultado_total)['total'];//numero total
 
 
-        $total_paginas = ceil($total_registros / $registros_por_pagina);
+        $TotalPaginas = ceil($total_registros / $NumeroNotificaciones);
 }
 ;
 ?>

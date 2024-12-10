@@ -33,25 +33,25 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
+            <th><center>ID</center></th>
             <th>CIP</th>
             <th>DNI</th>
             <th>Nombre Completo</th>
             <th>Celular</th>
             <th>Dirección</th>
-            <th>Acciones</th>
+            <th><center>Acciones</center></th>
         </tr>
         </thead>
         <tbody>
         <?php while ($postulante = mysqli_fetch_assoc($resultado)) { ?>
             <tr>
-                <td><?php echo $postulante['id_postulante']; ?></td>
+                <td><center><?php echo $postulante['id_postulante']; ?></center></td>
                 <td><?php echo $postulante['cip_postulante']; ?></td>
                 <td><?php echo $postulante['dni_postulante']; ?></td>
                 <td><?php echo $postulante['nombre_postulante'] . ' ' . $postulante['apellido_paterno_postulante'] . ' ' . $postulante['apellido_materno_postulante']; ?></td>
                 <td><?php echo $postulante['celular_postulante']; ?></td>
                 <td><?php echo $postulante['direccion_postulante']; ?></td>
-                <td>
+                <td><center>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#editarModal"
                             data-id="<?php echo $postulante['id_postulante']; ?>"
@@ -64,6 +64,7 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
                             data-direccion="<?php echo $postulante['direccion_postulante']; ?>"
                             data-fecha_nacimiento="<?php echo $postulante['fecha_nacimiento_postulante']; ?>">
                         Editar
+                        </center>
                     </button>
                 </td>
             </tr>

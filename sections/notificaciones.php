@@ -80,10 +80,10 @@ if (isset($_POST['mensaje_id'])) {
     <link rel="stylesheet" href="css/notificaciones_postulante.css">
 </head>
 <body>
-    <div class="cabecera">
-        <h1>Notificaciones</h1>
-    </div>
-
+<?php
+if($TotalPaginas>0){
+?>    
+<php?
     <div class="contenido">
         <?php if (empty($notificaciones)): ?>
             <p>No tienes notificaciones.</p>
@@ -179,6 +179,16 @@ if (isset($_POST['mensaje_id'])) {
             xhr.send('mensaje_id=' + mensajeId);
         }
     </script>
+
+
+<?php
+}else{
+    ?>
+
+<center><h2>No hay notificaciones</h2></center>
+
+<?php
+}?>
 </body>
 </html>
 

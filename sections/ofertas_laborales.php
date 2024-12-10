@@ -2,28 +2,23 @@
 require_once __DIR__ . '/../control/p_ofertas_laborales.php';
 include __DIR__ . '/../control/p_imagen_empresa.php';
 
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Oferta</title>
-    <link rel="stylesheet" href="css/ofertas_laborales.css">
+    <title>Ver Oferta</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/ofertas_laborales.css">
 </head>
 
 <body>
-    <br>
     <Center>
         <H2>OFERTAS LABORALES</H2>
     </Center>
+    <div class="contenido">
+    
     <table class="offer-table">
         <tr>
             <td class="header-column"><strong>FOTO</strong></td>
@@ -33,7 +28,6 @@ include __DIR__ . '/../control/p_imagen_empresa.php';
         </tr>
 
         <?php
-
         while ($r = mysqli_fetch_assoc($fila)) { ?>
             <tr>
                 <td>
@@ -64,21 +58,43 @@ include __DIR__ . '/../control/p_imagen_empresa.php';
         ?>
 
     </table>
+    </div>
+    
+    <div class="paginacion">
+        <nav>
+            <ul class="pagination justify-content-center mb-0">
+                <li class="page-item <?= ($PaginaActual <= 1) ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="index.php?page=ofertas_laborales&pagina=<?= $PaginaActual - 1; ?>" <?= ($PaginaActual <= 1) ? 'tabindex="-1"' : ''; ?>>Anterior</a>
+                </li>
+                <?php for ($i = 1; $i <= $TotalPaginas; $i++): ?>
+                    <li class="page-item <?= $i == $PaginaActual ? 'active' : ''; ?>">
+                        <a class="page-link" href="index.php?page=ofertas_laborales&pagina=<?= $i; ?>"><?= $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+                <li class="page-item <?= ($PaginaActual >= $TotalPaginas) ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="index.php?page=ofertas_laborales&pagina=<?= $PaginaActual + 1; ?>" <?= ($PaginaActual >= $TotalPaginas) ? 'tabindex="-1"' : ''; ?>>Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    
 
-    <br>
-
-
-    <center>
-        <div class="pagination">
-            <?php
-            for ($i = 0; $i < $total_paginas; $i++) {
-                $parametro = $i * $registros_por_pagina;
-                echo "<a href='index.php?page=ofertas_laborales&valor=$parametro' class='page-link'>Página " . ($i + 1) . "</a>&nbsp;";
-            }
-            ?>
-        </div>
-    </center>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function marcarComoLeido(mensajeId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var notificacion = document.getElementById('notificacion-' + mensajeId);
+                    notificacion.classList.remove('no-leido');
+                    notificacion.classList.add('leido');
+                }
+            };
+            xhr.send('mensaje_id=' + mensajeId);
+        }
+    </script>
+</div>
 </body>
 
 </html>

@@ -39,7 +39,7 @@ if (mysqli_num_rows($resultado_empresa) > 0) {
         FROM propuesta p
         INNER JOIN estado_propuesta ep ON p.id_estado_propuesta = ep.id_estado_propuesta
         INNER JOIN detalle_empresa_propuesta dep ON p.id_propuesta = dep.id_propuesta
-        WHERE dep.id_empresa = ? AND ep.nombre_estado_propuesta IN ('activo','expirado')";
+        WHERE dep.id_empresa = ? AND ep.id_estado_propuesta IN ('1','2')";
     $stmt = mysqli_prepare($cn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_empresa);
     mysqli_stmt_execute($stmt);

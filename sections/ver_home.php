@@ -45,8 +45,8 @@ include __DIR__ . '/../control/p_ver_home.php';
 
                 <!-- Botones para empresa visitada -->
                 <div class="profile-buttons">
-                    <a href="index.php?page=ver_propuestas_empresa&id_empresa=<?php echo $id_empresa_visitada; ?>"
-                        class="button blue">Ver Propuestas</a>
+                    <a href="index.php?page=ofertas_laborales&id_empresa=<?php echo $id_empresa_visitada; ?>"
+                        class="button blue">Regresar</a>
                     <a href="index.php?page=queja&id_empresa=<?php echo $id_empresa_visitada; ?>"
                         class="button report">Reportar</a>
                 </div>

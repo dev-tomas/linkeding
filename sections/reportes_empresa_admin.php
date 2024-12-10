@@ -29,29 +29,29 @@ $resultado = mysqli_query($cn, $sql);
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Listado de Empresas</h2>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
+            <th><center>ID</center></th>
             <th>RUC</th>
             <th>Razón Social</th>
             <th>Celular</th>
             <th>Dirección</th>
             <th>Representante</th>
-            <th>Acciones</th>
+            <th><center>Acciones</center></th>
         </tr>
         </thead>
         <tbody>
         <?php while ($empresa = mysqli_fetch_assoc($resultado)) { ?>
             <tr>
-                <td><?php echo $empresa['id_empresa']; ?></td>
+                <td><center><?php echo $empresa['id_empresa']; ?></center></td>
                 <td><?php echo $empresa['ruc_empresa']; ?></td>
                 <td><?php echo $empresa['razon_social_empresa']; ?></td>
                 <td><?php echo $empresa['celular_empresa']; ?></td>
                 <td><?php echo $empresa['direccion_empresa']; ?></td>
                 <td><?php echo $empresa['representante_empresa']; ?></td>
                 <td>
-                    <button class="btn btn-primary btn-sm editar-empresa" data-id="<?php echo $empresa['id_empresa']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button>
+                    <center><button class="btn btn-primary btn-sm editar-empresa" data-id="<?php echo $empresa['id_empresa']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</center></button>
                 </td>
             </tr>
         <?php } ?>

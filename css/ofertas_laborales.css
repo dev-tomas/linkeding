@@ -6,10 +6,14 @@ body {
     color: #2c3e50;
     line-height: 1.6;
 }
-
-.offer-table {
-    width: 90%;
-    max-width: 1000px;
+.contenido {
+    flex: 1;
+    min-height: calc(81vh - 150px); /* Ajuste de altura para mantener consistencia */
+    box-sizing: border-box;
+}
+.offer-table {  
+    width: 95%; 
+    max-width: 1800px;
     margin: 30px auto;
     border-collapse: separate;
     border-spacing: 0;
@@ -142,4 +146,55 @@ table td:nth-child(4) {
 } /* Centrar la cabecera de la cuarta columna */ 
 table th:nth-child(4) { 
     text-align: center; /* Centra el texto de la cabecera de la cuarta columna */ 
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    padding: 12px 12px; /* Corrige el padding */
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.08);
+    margin: 0 auto; /* Centra horizontalmente */
+    width: 95%; /* Usa todo el ancho disponible */
+}
+
+
+
+.paginacion .pagination {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.paginacion .pagination li {
+    margin: 0;
+}
+
+.paginacion .pagination li a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #3a4f7a;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paginacion .pagination li a:hover {
+    background-color: #1d3056;
+    color: #fff;
+}
+
+.paginacion .pagination li.active a {
+    background-color: #3a4f7a;
+    color: #fff;
+}
+
+.paginacion .pagination li.disabled a {
+    color: #bbb;
+    pointer-events: none;
 }
