@@ -8,7 +8,10 @@ if ($pagina < 1) $pagina = 1;
 
 $offset = ($pagina - 1) * $resultadosPorPagina;
 
-$sql = "SELECT * FROM postulante
+// Modificamos la consulta para obtener el nombre del sexo
+$sql = "SELECT p.*, s.nombre_sexo 
+        FROM postulante p
+        INNER JOIN sexo s ON p.id_sexo = s.id_sexo
         LIMIT $resultadosPorPagina OFFSET $offset";
 
 $resultado = mysqli_query($cn, $sql);
@@ -17,7 +20,6 @@ $sqlTotal = "SELECT COUNT(*) as total FROM postulante";
 $totalResultados = mysqli_fetch_assoc(mysqli_query($cn, $sqlTotal))['total'];
 $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -39,6 +41,7 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
             <th>Nombre Completo</th>
             <th>Celular</th>
             <th>Dirección</th>
+            <th>Sexo</th>
             <th><center>Acciones</center></th>
         </tr>
         </thead>
@@ -51,6 +54,7 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
                 <td><?php echo $postulante['nombre_postulante'] . ' ' . $postulante['apellido_paterno_postulante'] . ' ' . $postulante['apellido_materno_postulante']; ?></td>
                 <td><?php echo $postulante['celular_postulante']; ?></td>
                 <td><?php echo $postulante['direccion_postulante']; ?></td>
+                <td><?php echo $postulante['nombre_sexo']; ?></td>
                 <td><center>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#editarModal"
@@ -62,7 +66,8 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
                             data-apellido_materno="<?php echo $postulante['apellido_materno_postulante']; ?>"
                             data-celular="<?php echo $postulante['celular_postulante']; ?>"
                             data-direccion="<?php echo $postulante['direccion_postulante']; ?>"
-                            data-fecha_nacimiento="<?php echo $postulante['fecha_nacimiento_postulante']; ?>">
+                            data-fecha_nacimiento="<?php echo $postulante['fecha_nacimiento_postulante']; ?>"
+                            data-sexo="<?php echo $postulante['id_sexo']; ?>">
                         Editar
                         </center>
                     </button>
@@ -145,6 +150,18 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
                             <label for="modal-fecha-nacimiento" class="form-label">Fecha de Nacimiento:</label>
                             <input type="date" class="form-control" id="modal-fecha-nacimiento" name="fecha_nacimiento_postulante" required>
                         </div>
+                        <div class="col-md-6 mb-3">
+                           <label for="modal-id_sexo" class="form-label">Sexo:</label>
+                           <select class="form-control" id="modal-id_sexo" name="id_sexo" required>
+                               <?php
+                               $sql_sexos = "SELECT id_sexo, nombre_sexo FROM sexo";
+                               $result_sexos = mysqli_query($cn, $sql_sexos);
+                               while ($row_sexo = mysqli_fetch_assoc($result_sexos)) {
+                                   echo "<option value='" . $row_sexo['id_sexo'] . "'>" . $row_sexo['nombre_sexo'] . "</option>";
+                               }
+                               ?>
+                           </select>
+                        </div>
                     </div>
                 </div>
 
@@ -171,6 +188,7 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
         var celular = button.getAttribute('data-celular');
         var direccion = button.getAttribute('data-direccion');
         var fechaNacimiento = button.getAttribute('data-fecha_nacimiento');
+        var sexo = button.getAttribute('data-sexo'); // Obtener el id del sexo
 
         document.getElementById('modal-id').value = id;
         document.getElementById('modal-cip').value = cip;
@@ -181,6 +199,14 @@ $totalPaginas = ceil($totalResultados / $resultadosPorPagina);
         document.getElementById('modal-celular').value = celular;
         document.getElementById('modal-direccion').value = direccion;
         document.getElementById('modal-fecha-nacimiento').value = fechaNacimiento;
+       // Establecer el valor seleccionado en el select
+        var selectSexo = document.getElementById('modal-id_sexo');
+         for (var i = 0; i < selectSexo.options.length; i++) {
+             if (selectSexo.options[i].value == sexo) {
+                 selectSexo.selectedIndex = i;
+                 break;
+            }
+        }
     });
 </script>
 </body>

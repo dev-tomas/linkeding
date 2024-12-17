@@ -78,16 +78,18 @@ if (isset($_POST['submit'])) {
             $nombre_admin = capitalizeFirstLetter(validateInput($_POST['nombre_administrador'], 'string'));
             $apaterno_admin = capitalizeFirstLetter(validateInput($_POST['apellido_paterno_administrador'], 'string'));
             $amaterno_admin = capitalizeFirstLetter(validateInput($_POST['apellido_materno_administrador'], 'string'));
+            $SexoAdmin = capitalizeFirstLetter(validateInput($_POST['id_sexo'],'int'));
 
             $errors = []; // Reiniciar array de errores
             if (empty($nombre_admin)) $errors[] = "El nombre es requerido";
             if (empty($apaterno_admin)) $errors[] = "El apellido paterno es requerido";
             if (empty($amaterno_admin)) $errors[] = "El apellido materno es requerido";
+            if(empty($SexoAdmin)) $error[] = "El Sexo es requerido";
 
 
             if (empty($errors)) {
-                $stmt = $cn->prepare("UPDATE administrador SET nombre_administrador = ?, apellido_paterno_administrador = ?, apellido_materno_administrador = ? WHERE id_usuario = ?");
-                $stmt->bind_param("sssi", $nombre_admin, $apaterno_admin, $amaterno_admin, $cod);
+                $stmt = $cn->prepare("UPDATE administrador SET nombre_administrador = ?, apellido_paterno_administrador = ?, apellido_materno_administrador = ?, id_sexo = ? WHERE id_usuario = ?");
+                $stmt->bind_param("sssii", $nombre_admin, $apaterno_admin, $amaterno_admin, $SexoAdmin,$cod);
                 $stmt->execute();
                 $message = "Administrador actualizado correctamente.";
                 header("Location: index.php");
@@ -167,6 +169,22 @@ if (isset($_POST['submit'])) {
                     <tr><th>Nombre:</th><td><input type="text" name="nombre_administrador" value="<?php echo $data['nombre_administrador'] ?? ''; ?>" required></td></tr>
                     <tr><th>Apellido Paterno:</th><td><input type="text" name="apellido_paterno_administrador" value="<?php echo $data['apellido_paterno_administrador'] ?? ''; ?>" required></td></tr>
                     <tr><th>Apellido Materno:</th><td><input type="text" name="apellido_materno_administrador" value="<?php echo $data['apellido_materno_administrador'] ?? ''; ?>" required></td></tr>
+                    <tr><th>Sexo:</th><td>
+                         <select name="id_sexo" required>
+                             <?php 
+                            $sql_sexos = "SELECT id_sexo, nombre_sexo FROM sexo";
+                            $result_sexos = mysqli_query($cn, $sql_sexos);
+                            while ($row_sexo = mysqli_fetch_assoc($result_sexos)) {
+                                $selected = ($data['id_sexo'] == $row_sexo['id_sexo']) ? 'selected' : '';
+                                echo "<option value='" . $row_sexo['id_sexo'] . "' $selected>" . $row_sexo['nombre_sexo'] . "</option>";
+                                }
+                            ?>
+                             </select>
+
+                      </td>
+
+
+
                 </table>
             <?php elseif ($tipo_usuario == 2): ?>
                 <!-- Formulario para Empresa -->
