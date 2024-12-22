@@ -1,0 +1,58 @@
+body {
+    background-color: #1a1a1a; /* Fondo personalizado */
+    color: #ffffff; /* Opcional: Texto blanco para contraste */
+}
+
+.container {
+    background-color: #3a3535;
+    padding: 30px;
+    border-radius: 15px;
+    
+}
+.table {
+    background-color: #3a3535;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.table th {
+    background-color: #6d6d6d;
+    color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #4b4b4b;
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #3a3535;
+}
+.btn {
+    border: none;
+}
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+}
+.btn-sm {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.card {
+    --bs-card-bg: #3a3535; /* Establece el fondo negro */
+    color: #fff; /* Opcional: Ajusta el color del texto para contraste */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--bs-card-bg); /* Ahora usará negro */
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+}
