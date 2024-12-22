@@ -133,7 +133,7 @@ if (isset($_POST['mensaje_id'])) {
                             <div class="modal-body">
                                 <p><strong>De:</strong> <?= htmlspecialchars($notificacion['nombre_emisor'] ?? 'Desconocido'); ?></p>
                                 <p><strong>Fecha:</strong> <?= htmlspecialchars($notificacion['fecha_mensaje']); ?></p>
-                                <p><?= nl2br(htmlspecialchars($notificacion['mensaje'])); ?></p>
+                                <p><strong>Mensaje:</strong> <?= nl2br(htmlspecialchars($notificacion['mensaje'])); ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
