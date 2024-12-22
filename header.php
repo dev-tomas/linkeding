@@ -8,6 +8,88 @@ require_once __DIR__.'/control/p_header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header.css">
+    <style>
+        <?php if ($id_rol != 1): ?>
+            #cssmenu {
+            background-color: #6c0e10;
+            color: white;
+            padding: 10px 0;
+        }
+
+        #cssmenu .logo {
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+
+        #cssmenu nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        #cssmenu nav ul li {
+            position: relative;
+        }
+
+        #cssmenu nav ul li a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        #cssmenu nav ul li a:hover {
+            background-color: black; /* Color de hover */
+        }
+
+        #cssmenu .has-sub > a:after {
+            content: " ▼";
+        }
+
+        #cssmenu .has-sub:hover > ul {
+            display: block;
+        }
+
+        #cssmenu nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #6c0e10;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 0;
+        }
+
+        #cssmenu nav ul li ul li a {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        #cssmenu .profile-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        #cssmenu .profile-container a {
+            color: white;
+            text-decoration: none;
+            padding-right: 15px;
+        }
+
+        #cssmenu .profile-container img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        <?php endif; ?>
+    </style>
 </head>
 
 <body>
