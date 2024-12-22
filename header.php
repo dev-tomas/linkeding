@@ -18,6 +18,7 @@ require_once __DIR__.'/control/p_header.php';
         <nav>
             <ul>
                 <?php if ($id_rol == 1): ?>
+                    <link rel="stylesheet" href="css/admin.css">
                     <li><a href="index.php?page=home">Principal</a></li>
                     <li class="has-sub">
                         <a href="#">Actualización</a>

@@ -100,6 +100,7 @@ require_once __DIR__ . '/../control/p_obtener_curriculum.php';
                 </div>
             </div>
         <?php elseif ($id_rol == 1): ?>
+            <link rel="stylesheet" href="css/admin_letra.css">
             <!-- Contenedor principal del perfil -->
             <div class="profile-main">
                 <!-- Foto de perfil y nombre -->
