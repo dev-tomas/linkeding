@@ -18,7 +18,7 @@ require_once 'control/p_reporte_propuesta.php';
         <span>Total de propuestas: <?php echo isset($r) && $r ? mysqli_num_rows($r) : 0; ?></span>
     </h2>
     <a href="../index.php?page=propuesta" class="create-button">Crear propuesta</a>
-</div>
+</div> 
 
     <table class="table">
         <thead>

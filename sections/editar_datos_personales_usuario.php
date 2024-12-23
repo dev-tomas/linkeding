@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
                 </table>
             <?php endif; ?>
             <br>
-            <button type="submit" name="submit">Actualizar</button>
+            <button type="submit" name="submit" style="background-color: #e31e25">Actualizar</button>
         </form>
     </div>
 </body>

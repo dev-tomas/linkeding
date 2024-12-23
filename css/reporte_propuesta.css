@@ -39,7 +39,7 @@ body {
 }
 
 .create-button {
-    background-color: #00d555;
+    background-color: #D7B56D;
     color: #ffffff;
     padding: 10px 42px;
     margin-right: 20px; 
@@ -68,7 +68,7 @@ body {
 }
 
 .table thead th {
-    background-color: #3498db;
+    background-color: #e31e25;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
@@ -132,7 +132,7 @@ a:hover {
 }
 /* Centrar las cabeceras de las tablas */
 .table thead th {
-    background-color: #3498db;
+    background-color: #e31e25;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;

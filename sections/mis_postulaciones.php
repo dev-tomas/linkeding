@@ -92,7 +92,7 @@ if (isset($_SESSION['usuario_id'])) {
                 </li>
                 <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
                     <li class="page-item <?= $i == $paginaActual ? 'active' : ''; ?>">
-                        <a class="page-link" href="index.php?page=mis_postulaciones&pagina=<?= $i; ?>"><?= $i; ?></a>
+                        <a class="page-link" style="background:#e31e25" href="index.php?page=mis_postulaciones&pagina=<?= $i; ?>"><?= $i; ?></a>
                     </li>
                 <?php endfor; ?>
                 <li class="page-item <?= ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>">

@@ -17,7 +17,7 @@
             <label for="fotoportada">Cambiar foto de portada:</label>
             <input type="file" id="fotoportada" name="fotoportada" accept="image/*">
             
-            <button type="submit">Actualizar Fotos</button>
+            <button type="submit" style="background-color: #e31e25">Actualizar Fotos</button>
         </form>
     </div>
 </body>

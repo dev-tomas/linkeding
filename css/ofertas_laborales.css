@@ -31,7 +31,7 @@ body {
 }
 
 .header-column {
-    background-color: #3a4f7a;
+    background-color: #e31e25;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -190,7 +190,7 @@ table th:nth-child(4) {
 }
 
 .paginacion .pagination li.active a {
-    background-color: #3a4f7a;
+    background-color: #e31e25;
     color: #fff;
 }
 

@@ -32,7 +32,7 @@ include("conexion.php");
                 </div>
 
                 <div class="input-group">
-                    <input type="submit" value="Cambiar contraseña">
+                    <input type="submit" style="background-color: #e31e25" value="Cambiar contraseña">
                 </div>
             </form>
 
