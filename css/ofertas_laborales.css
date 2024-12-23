@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f5f6f8;
-    color: #2c3e50;
+    color: #9e1719;
     line-height: 1.6;
 }
 .contenido {
@@ -31,7 +31,7 @@ body {
 }
 
 .header-column {
-    background-color: #3a4f7a;
+    background-color: #9e1719;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -92,7 +92,7 @@ body {
     .offer-table td::before {
         content: attr(data-label);
         font-weight: 600;
-        color: #2c3e50;
+        color: #9e1719;
         margin-right: 10px;
     }
 }
@@ -100,7 +100,7 @@ body {
 /* Scrollbar styling for modern browsers */
 .offer-table {
     scrollbar-width: thin;
-    scrollbar-color: #3a4f7a #f1f3f5;
+    scrollbar-color: #9e1719 #f1f3f5;
 }
 
 .offer-table::-webkit-scrollbar {
@@ -112,7 +112,7 @@ body {
 }
 
 .offer-table::-webkit-scrollbar-thumb {
-    background-color: #3a4f7a;
+    background-color: #9e1719;
     border-radius: 4px;
 }
 
@@ -179,18 +179,18 @@ table th:nth-child(4) {
     display: block;
     padding: 8px 12px;
     text-decoration: none;
-    color: #3a4f7a;
+    color: #9e1719;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .paginacion .pagination li a:hover {
-    background-color: #1d3056;
+    background-color: #6c0e10;
     color: #fff;
 }
 
 .paginacion .pagination li.active a {
-    background-color: #3a4f7a;
+    background-color: #9e1719;
     color: #fff;
 }
 

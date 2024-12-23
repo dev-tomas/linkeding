@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    color: #2c3e50;
+    color: #6c0e10;
     line-height: 1.6;
 }
 
@@ -65,7 +65,7 @@ body {
 }
 
 .notificacion .boton button {
-    background-color: #3a4f7a;
+    background-color: #9e1719;
     color: #fff;
     border: none;
     padding: 6px 25px;
@@ -77,7 +77,7 @@ body {
 }
 
 .notificacion .boton button:hover {
-    background-color: #26395e;
+    background-color: #6c0e10;
 }
 
 .paginacion {
@@ -109,18 +109,18 @@ body {
     display: block;
     padding: 8px 12px;
     text-decoration: none;
-    color: #3a4f7a;
+    color: #9e1719;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .paginacion .pagination li a:hover {
-    background-color: #1d3056;
+    background-color: #6c0e10;
     color: #fff;
 }
 
 .paginacion .pagination li.active a {
-    background-color: #3a4f7a;
+    background-color: #9e1719;
     color: #fff;
 }
 

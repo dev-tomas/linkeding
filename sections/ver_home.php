@@ -85,13 +85,14 @@ include __DIR__ . '/../control/p_ver_home.php';
                         CELULAR: <?php echo htmlspecialchars($celular); ?>
                 </div>
             </div>
+            
             <?php if (empty($curriculum)): ?>
                 <!-- Botones -->
                 <div class="profile-buttons">
                     <?php $ruta_curriculum = obtener_direccion_curriculum($id_postulante_visitado); ?>
 
                     <a href="index.php?page=queja&id_empresa=<?php echo $id_empresa_visitada; ?>"
-                        class="button blue">Reportar</a>
+                        class="button report">Reportar</a>
                 </div>
 
             <?php else: ?>
@@ -103,7 +104,7 @@ include __DIR__ . '/../control/p_ver_home.php';
                         Curriculum</a>
 
                     <a href="index.php?page=queja&id_postulante=<?php echo $id_postulante_visitado; ?>"
-                        class="button blue">Reportar</a>
+                        class="button report">Reportar</a>
                 </div>
 
             <?php endif; ?>
