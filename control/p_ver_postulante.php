@@ -15,6 +15,7 @@ $sql = "
     p.celular_postulante, 
     p.direccion_postulante, 
     p.fecha_nacimiento_postulante,
+    p.id_curriculum,
     c.nombre_carrera AS profesion_postulante, 
     cu.ruta_curriculum,
     dp.fecha_postulacion

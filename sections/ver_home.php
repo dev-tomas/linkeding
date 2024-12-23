@@ -32,7 +32,7 @@ include __DIR__ . '/../control/p_ver_home.php';
                             alt="Foto de perfil" class="profile-image">
                     </div>
                     <div class="profile-info">
-                        <h1><?php echo htmlspecialchars($nombre); ?></h1>
+                        <h1 style="color:#d7b56d"><?php echo htmlspecialchars($nombre); ?></h1>
                         <h3>Empresa</h3>
                         <p class="profile-details">
                             RUC: <?php echo htmlspecialchars($ruc); ?> |
@@ -46,9 +46,9 @@ include __DIR__ . '/../control/p_ver_home.php';
                 <!-- Botones para empresa visitada -->
                 <div class="profile-buttons">
                     <a href="index.php?page=ofertas_laborales&id_empresa=<?php echo $id_empresa_visitada; ?>"
-                        class="button blue">Regresar</a>
+                        class="button report">Regresar</a>
                     <a href="index.php?page=queja&id_empresa=<?php echo $id_empresa_visitada; ?>"
-                        class="button report">Reportar</a>
+                        class="button blue">Reportar</a>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@ include __DIR__ . '/../control/p_ver_home.php';
 
                 </div>
                 <div class="profile-info">
-                    <h1><?php echo htmlspecialchars($nombre); ?></h1>
+                    <h1 style="color:#d7b56d"><?php echo htmlspecialchars($nombre); ?></h1>
                     <?php $carrera = obtener_nombre_carrera($id_postulante_visitado); ?>
                     <h3>Título: <?php echo htmlspecialchars($carrera); ?></h3>
                     <p class="profile-details">
@@ -91,7 +91,7 @@ include __DIR__ . '/../control/p_ver_home.php';
                     <?php $ruta_curriculum = obtener_direccion_curriculum($id_postulante_visitado); ?>
 
                     <a href="index.php?page=queja&id_empresa=<?php echo $id_empresa_visitada; ?>"
-                        class="button report">Reportar</a>
+                        class="button blue">Reportar</a>
                 </div>
 
             <?php else: ?>
@@ -103,7 +103,7 @@ include __DIR__ . '/../control/p_ver_home.php';
                         Curriculum</a>
 
                     <a href="index.php?page=queja&id_postulante=<?php echo $id_postulante_visitado; ?>"
-                        class="button report">Reportar</a>
+                        class="button blue">Reportar</a>
                 </div>
 
             <?php endif; ?>

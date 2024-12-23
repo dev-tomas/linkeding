@@ -9,12 +9,11 @@
 <body>
     <div class="container">
         <form action="../control/p_registro.php" method="POST" enctype="multipart/form-data">
-            <table style="width: 100%;">
+            <table>
                 <tr>
-                    <td style="width: 50%; vertical-align: top;">
+                    <td style="width: 40%;">
                         <div class="form-left">
                             <h2>REGISTRO</h2>
-                            <br>
                             <br>
                             <label for="username">Nombre de Usuario:</label>
                             <input type="text" id="username" name="username" required>
@@ -38,8 +37,9 @@
                             </div>
                         </div>
                     </td>
-                    <td style="width: 50%; vertical-align: top;">
+                    <td style="width: 60%;">
                         <div class="form-right">
+                            <br>
                             <div id="dynamic-fields" class="dynamic-fields">
                                 <!-- Campos dinámicos aquí -->
                             </div>

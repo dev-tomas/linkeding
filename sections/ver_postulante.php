@@ -56,7 +56,7 @@ include('control/p_imagen_postulante.php');
 
                     <td>
                         <?php if (!empty($row['id_curriculum'])) { ?>
-                            <a href="../curriculum.php?id=<?php echo htmlspecialchars($row['id_curriculum']); ?>"
+                            <a href="../curriculum/<?php echo htmlspecialchars($row['ruta_curriculum']); ?>"
                                 class="curriculum-link">
                                 📂 Ver Currículum
                             </a>

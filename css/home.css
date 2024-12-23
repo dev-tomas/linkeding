@@ -13,20 +13,6 @@
     padding-bottom: 40px;
 }
 
-/* Header principal */
-.main-header {
-    width: 100%;
-    background-color: #0077b5;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 10; /* Encima de todo */
-}
-
 /* Portada */
 .profile-cover {
     position: relative;
@@ -104,12 +90,12 @@
 }
 
 .button.blue {
-    background-color: #0077b5;
+    background-color: #e31e25;
     color: #ffffff;
 }
 
 .button.blue:hover {
-    background-color: #005580;
+    background-color: #921215;
 }
 
 .button.gray {
@@ -123,17 +109,17 @@
 
 .button.report {
     background-color: transparent;
-    color: #ff0000; /* Color rojo para el texto */
-    border: 2px solid #ff0000; /* Borde rojo */
+    color: #e31e25; /* Color rojo para el texto */
+    border: 2px solid #e31e25; /* Borde rojo */
     padding: 10px 20px;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 
 .button.report:hover {
-    background-color: #ff0000; /* Fondo rojo al pasar el cursor */
+    background-color: #e31e25; /* Fondo rojo al pasar el cursor */
     color: #ffffff; /* Texto blanco al pasar el cursor */
-    border-color: #ff0000;
+    border-color: #e31e25;
 }
 
 /* Descripción del perfil */
