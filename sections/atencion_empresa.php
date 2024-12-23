@@ -137,7 +137,6 @@ $resultado = mysqli_query($cn, $sql);
         </div>
     </div>
 
-    <!-- Modal para mostrar mensaje -->
     <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

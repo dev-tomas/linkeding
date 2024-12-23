@@ -31,7 +31,7 @@ require_once __DIR__ . '/../control/p_obtener_curriculum.php';
                             
                     </div>
                     <div class="profile-info">
-                        <h1><?php echo htmlspecialchars($nombre); ?></h1>
+                        <h1 style="color:#D7B56D"><?php echo htmlspecialchars($nombre); ?></h1>
                         <?php $carrera = obtener_nombre_carrera($usuario_id); ?>
                         <h3>Título: <?php echo htmlspecialchars($carrera); ?></h3>
                         <p class="profile-details">
@@ -83,8 +83,8 @@ require_once __DIR__ . '/../control/p_obtener_curriculum.php';
                         <img src="<?php echo htmlspecialchars($ruta_imagen_usuario) ?>?<?php echo time(); ?>"
                             alt="Foto de perfil" class="profile-image">
                     </div>
-                    <div class="profile-info">
-                        <h1><?php echo htmlspecialchars($nombre); ?></h1>
+                    <div class="profile-info" >
+                        <h1 style="color:#D7B56D"><?php echo htmlspecialchars($nombre); ?></h1>
                         <h3>Empresa</h3>
                         <p class="profile-details">
                             RUC: <?php echo htmlspecialchars($ruc); ?> |
