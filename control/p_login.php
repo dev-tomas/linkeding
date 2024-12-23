@@ -57,10 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card">
+    <div class="main-container">
+        <div class="form-section">
             <h3>Error de Autenticación</h3>
             <p class="error-message"><?php echo $error_message; ?></p>
+            <br>
             <a href="../sections/login.php">Volver al Login</a>
         </div>
     </div>
